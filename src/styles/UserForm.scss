@@ -1,0 +1,25 @@
+.bg-image {
+  background-image: url("../assets/images/roofing-2.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.blurry-bg {
+  background-image: url("../assets/images/roofing-2.png"); /* Same image as bg-image */
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px); /* Apply a blur effect to the background only */
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjust form styles as needed */
+.form-group {
+  margin-bottom: 15px;
+}

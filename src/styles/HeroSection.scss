@@ -1,8 +1,24 @@
 .hero-section {
+  position: relative; /* Needed for the triangle */
+
+  &::before {
+    /* Create a triangle at the bottom with white color */
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-bottom: 20vh solid white; /* Adjust the triangle height as needed */
+    z-index: 1; /* Place it above the navy blue background */
+  }
+
   background-color: #001f3f; /* Navy Blue Background Color */
   color: #fff; /* White Text Color */
   height: 100vh; /* Full viewport height */
-
+  overflow: hidden;
   .container {
     height: 100%;
     display: flex;

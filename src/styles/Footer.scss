@@ -1,0 +1,34 @@
+.footer {
+  background-color: #001f3f; /* Dark Blue Background Color */
+  color: #fff; /* White Text Color on Dark Background */
+  padding: 20px 0;
+  font-size: 14px;
+  border-top: 2px solid #0074cc; /* Blue Accent Line at the Top */
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Style address and contact information with a lighter text color */
+.address,
+.text-muted {
+  color: #a5a5a5; /* Blue-Gray Text Color */
+}
+
+/* Style links with a lighter blue color */
+a {
+  color: #90c0e0; /* Lighter Blue Link Color */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #6a96b9; /* Slightly Darker Blue on Hover */
+}

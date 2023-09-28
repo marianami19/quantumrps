@@ -45,13 +45,16 @@ const steps = [
 
 const StepByStepInstructions = () => {
   return (
-    <div className="step-by-step-instructions">
-      {steps.map((step, index) => (
-        <div className="instruction-card" key={index}>
-          <h3>{step.title}</h3>
-          <p>{step.description}</p>
-        </div>
-      ))}
+    <div id="roofingStepsContainer">
+      <h2>Step 1: Measure Your Roof </h2>
+      <div className="step-by-step-instructions">
+        {steps.map((step, index) => (
+          <div className="instruction-card" key={index}>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

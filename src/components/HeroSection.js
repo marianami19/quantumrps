@@ -2,6 +2,13 @@ import React from "react";
 import "../styles/HeroSection.scss";
 
 function HeroSection() {
+  const scrollToSteps = () => {
+    const stepsContainer = document.getElementById("roofingStepsContainer");
+    if (stepsContainer) {
+      stepsContainer.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="hero-section">
       <div className="container h-100">
@@ -11,7 +18,9 @@ function HeroSection() {
             <p className="hero-description">
               Providing professional roofing services since 2005.
             </p>
-            <button className="btn btn-primary btn-lg">Get Started</button>
+            <button className="btn btn-primary btn-lg" onClick={scrollToSteps}>
+              Get Started
+            </button>
           </div>
           <div className="col-md-6">
             <div className="image-container">
