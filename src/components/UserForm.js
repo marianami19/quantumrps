@@ -1,12 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "../styles/UserForm.scss";
 
 function UserForm() {
   return (
-    <Fragment>
-      <div className="container-fluid bg-image">
-        <div className="blurry-bg"></div>
-      </div>
+    <div className="container-fluid bg-image">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 form-container">
@@ -31,14 +28,14 @@ function UserForm() {
                   className="form-control"
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary text-center">
                 Submit
               </button>
             </form>
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }
 

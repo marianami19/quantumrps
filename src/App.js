@@ -21,7 +21,7 @@ function App() {
       <RoofingCalculator />
       <RoofMeasurementInstructions />
       <UserForm />
-      <ContactSection />
+      {/* <ContactSection /> */}
       <Footer />
     </div>
   );
