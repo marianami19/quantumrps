@@ -7,6 +7,7 @@ import AboutSection from "./components/AboutSection";
 import GallerySection from "./components/GallerySection";
 import ContactSection from "./components/ContactSection";
 import RoofingCalculator from "./components/RoofingCalculator";
+import RoofMeasurementInstructions from "./components/RoofMeasurementInstructions";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <HeroSection />
       <AboutSection />
       <GallerySection />
+      <RoofMeasurementInstructions />
       <RoofingCalculator />
       <ContactSection />
     </div>

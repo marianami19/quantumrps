@@ -3,9 +3,9 @@ import "../styles/RoofingCalculator.scss";
 
 function RoofingCalculator() {
   // Define state variables for form inputs
-  const [roofingMaterial, setRoofingMaterial] = useState("");
+  const [roofingMaterial, setRoofingMaterial] = useState("shingles");
   const [needNewGutters, setNeedNewGutters] = useState(false);
-  const [materialSubType, setMaterialSubType] = useState("");
+  const [materialSubType, setMaterialSubType] = useState("3-tab");
   const [tearOffLayers, setTearOffLayers] = useState("");
   const [numberOfStories, setNumberOfStories] = useState(1);
   const [numberOfSkylights, setNumberOfSkylights] = useState(0);
@@ -15,6 +15,19 @@ function RoofingCalculator() {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validate inputs
+    if (
+      numberOfStories < 0 ||
+      numberOfSkylights < 0 ||
+      numberOfRidgeVents < 0 ||
+      numberOfDormers < 0
+    ) {
+      alert(
+        "Please enter non-negative values for Number of Stories, Skylights, Ridge Vents, and Dormers."
+      );
+      return;
+    }
 
     // Perform calculations or submit data as needed
     // You can calculate the roofing cost based on the form inputs here
@@ -31,18 +44,44 @@ function RoofingCalculator() {
     });
   };
 
+  // Function to update material subtype based on roofing material
+  const updateMaterialSubType = (material) => {
+    switch (material) {
+      case "shingles":
+        setMaterialSubType("3-tab");
+        break;
+      case "tiles":
+        setMaterialSubType("concrete");
+        break;
+      case "metal":
+        setMaterialSubType("aluminium");
+        break;
+      case "fiberglass":
+        setMaterialSubType("corrugated");
+        break;
+      case "fibercement":
+        setMaterialSubType("corrugated");
+        break;
+      default:
+        setMaterialSubType("");
+        break;
+    }
+  };
+
   return (
     <div className="roofing-calculator">
-      <h2>Roofing Calculator</h2>
+      <h2 className="mb-4">Roofing Calculator</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Roofing Material</label>
           <select
             className="form-control"
             value={roofingMaterial}
-            onChange={(e) => setRoofingMaterial(e.target.value)}
+            onChange={(e) => {
+              setRoofingMaterial(e.target.value);
+              updateMaterialSubType(e.target.value);
+            }}
           >
-            <option value="">Select Material</option>
             <option value="shingles">Shingles</option>
             <option value="tiles">Tiles</option>
             <option value="metal">Metal</option>
@@ -82,12 +121,50 @@ function RoofingCalculator() {
             value={materialSubType}
             onChange={(e) => setMaterialSubType(e.target.value)}
           >
-            <option value="">Select Sub Type</option>
-            <option value="concrete">Concrete</option>
-            <option value="clay">Clay</option>
-            <option value="glazed">Glazed</option>
-            <option value="slate">Slate</option>
-            <option value="steel">Steel</option>
+            {roofingMaterial === "shingles" && (
+              <>
+                <option value="3-tab">3-Tab Shingle</option>
+                <option value="aluminium">Aluminium Shingle</option>
+                <option value="architectural">Architectural Shingle</option>
+                <option value="asphalt">Asphalt Shingle</option>
+                <option value="metal-shingle">Metal Shingle</option>
+                <option value="synthetic-comp">Synthetic Comp Shingle</option>
+              </>
+            )}
+            {roofingMaterial === "tiles" && (
+              <>
+                <option value="concrete">Concrete</option>
+                <option value="clay">Clay</option>
+                <option value="glazed">Glazed</option>
+                <option value="slate">Slate</option>
+                <option value="steel">Steel</option>
+              </>
+            )}
+            {roofingMaterial === "metal" && (
+              <>
+                <option value="aluminium">Aluminium Shingle</option>
+                <option value="copper-panel">Copper Panel</option>
+                <option value="corrugated">Corrugated</option>
+                <option value="corrugated-aluminium">
+                  Corrugated Aluminium
+                </option>
+                <option value="ribbed">Ribbed</option>
+                <option value="standard">Standard</option>
+                <option value="steel-metal">Steel</option>
+              </>
+            )}
+            {roofingMaterial === "fiberglass" && (
+              <>
+                <option value="corrugated">Corrugated</option>
+              </>
+            )}
+            {roofingMaterial === "fibercement" && (
+              <>
+                <option value="corrugated">Corrugated</option>
+                <option value="shake">Shake</option>
+                <option value="slate-fibercement">Slate</option>
+              </>
+            )}
           </select>
         </div>
 
