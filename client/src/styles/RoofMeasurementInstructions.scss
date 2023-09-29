@@ -1,25 +1,42 @@
-.step-by-step-instructions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+#roofingStepsContainer {
+  background: linear-gradient(
+    180deg,
+    #e0f0ff 0%,
+    #c6e2ff 100%
+  ); /* Light blue gradient background */
   padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .row {
+    justify-content: center;
+    gap: 20px;
+  }
 
   .instruction-card {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.9); /* Light background for cards */
     padding: 20px;
     border-radius: 10px;
-    width: calc(25% - 20px); // Four cards in a row
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.3s ease;
+    min-height: 200px; /* Ensure cards have the same size */
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(255, 255, 255, 1); /* Slightly brighter on hover */
       transform: translateY(-5px);
     }
 
     h3 {
       font-size: 18px;
+      font-weight: bold;
       margin-bottom: 10px;
     }
 

@@ -47,11 +47,13 @@ const StepByStepInstructions = () => {
   return (
     <div id="roofingStepsContainer">
       <h2>Measure Your Roof Tips</h2>
-      <div className="step-by-step-instructions">
+      <div className="row">
         {steps.map((step, index) => (
-          <div className="instruction-card" key={index}>
-            <h3>{step.title}</h3>
-            <p>{step.description}</p>
+          <div className="col-lg-3 col-md-4 col-sm-6 col-12" key={index}>
+            <div className="instruction-card">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
           </div>
         ))}
       </div>

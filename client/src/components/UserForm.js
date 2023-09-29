@@ -1,24 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from "axios"; // Import Axios for making HTTP requests
 import "../styles/UserForm.scss";
 
 function UserForm() {
+  // Initialize state to store form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    squareFootage: "",
+  });
+
+  // Function to handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    try {
+      // Make a POST request to your backend endpoint
+      const response = await Axios.post("/submit-form", formData);
+
+      if (response.status === 200) {
+        console.log("Form submitted successfully!");
+        // Reset the form fields after submission (if needed)
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          squareFootage: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Handle any errors (e.g., display an error message to the user)
+    }
+  };
+
+  // Function to handle input field changes
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   return (
     <div className="container-fluid bg-image">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 form-container">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Name:</label>
-                <input type="text" name="name" className="form-control" />
+                <input
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="form-group">
                 <label>Email:</label>
-                <input type="email" name="email" className="form-control" />
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="form-group">
                 <label>Phone Number:</label>
-                <input type="tel" name="phone" className="form-control" />
+                <input
+                  type="tel"
+                  name="phone"
+                  className="form-control"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="form-group">
                 <label>Square Footage:</label>
@@ -26,6 +86,8 @@ function UserForm() {
                   type="number"
                   name="squareFootage"
                   className="form-control"
+                  value={formData.squareFootage}
+                  onChange={handleInputChange}
                 />
               </div>
               <button type="submit" className="btn btn-primary text-center">
