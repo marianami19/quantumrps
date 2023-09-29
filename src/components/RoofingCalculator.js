@@ -58,9 +58,9 @@ function RoofingCalculator() {
 
   return (
     <div className="roofing-calculator">
-      <h2 className="mb-4">Step 2: Fill this Form</h2>
+      {/* <h2 className="mb-4">Step 2: Fill this Form</h2> */}
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Total Square Footage:</label>
           <input
             type="number"
@@ -70,7 +70,7 @@ function RoofingCalculator() {
             value={totalSquareFootage}
             onChange={(e) => setTotalSquareFootage(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="row">
           <div className="col-md-6">
@@ -245,8 +245,8 @@ function RoofingCalculator() {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Calculate
+        <button type="submit" className="btn btn-primary my-5">
+          Calculate Roofing Estimate
         </button>
       </form>
     </div>

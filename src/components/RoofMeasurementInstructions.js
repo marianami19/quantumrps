@@ -46,7 +46,7 @@ const steps = [
 const StepByStepInstructions = () => {
   return (
     <div id="roofingStepsContainer">
-      <h2>Step 1: Measure Your Roof </h2>
+      <h2>Measure Your Roof Tips</h2>
       <div className="step-by-step-instructions">
         {steps.map((step, index) => (
           <div className="instruction-card" key={index}>
