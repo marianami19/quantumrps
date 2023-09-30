@@ -1,55 +1,59 @@
-// server.js
-
 const express = require("express");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cors = require("cors");
+const mysql = require("mysql");
+const cors = require("cors"); // Import cors package
 
 const app = express();
-const port = process.env.PORT || 3000;
-
-// Enable CORS for all routes
-app.use(cors());
-
-// Parse JSON requests
+app.use(cors()); // Enable CORS for all routes
+// const app = express();
+// app.use(bodyParser.json());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Connect to MongoDB (replace 'YOUR_MONGODB_URI' with your actual MongoDB connection URL)
-mongoose.connect("mongodb://localhost:27017/", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+// Create a MySQL connection pool (configure with your MySQL details)
+const pool = mysql.createPool({
+  host: "localhost", // If your MySQL server is on the same machine
+  user: "root", // Replace with your MySQL username (usually "root" for XAMPP)
+  password: "", // Leave it empty if you haven't set a password for your MySQL server in XAMPP
+  database: "quantumrps", // Replace with your database name
 });
 
-// Define a MongoDB schema for form submissions
-const SubmissionSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  phone: String,
-  squareFootage: Number,
+app.post("/submit-form", (req, res) => {
+  const formData = req.body;
+  console.log("in", req.body);
+
+  // Get a connection from the pool
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error("Error connecting to MySQL:", err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+    // Insert the formData into the database using named placeholders
+    const query =
+      "INSERT INTO user_data (name, email, phone, squareFootage) VALUES (?, ?, ?, ?)";
+    const values = [
+      formData.name,
+      formData.email,
+      formData.phone,
+      formData.squareFootage,
+    ];
+
+    connection.query(query, values, (err, results) => {
+      connection.release(); // Release the connection back to the pool
+
+      if (err) {
+        console.error("Error inserting data into MySQL:", err);
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
+
+      console.log("Form data saved to MySQL:", results);
+      res.status(200).json({ message: "Form submitted successfully!" });
+    });
+  });
 });
 
-// Create a MongoDB model
-const Submission = mongoose.model("Submission", SubmissionSchema);
-
-// Handle form submissions
-app.post("/submit-form", async (req, res) => {
-  try {
-    const { name, email, phone, squareFootage } = req.body;
-
-    // Create a new submission document
-    const submission = new Submission({ name, email, phone, squareFootage });
-
-    // Save the submission to the database
-    await submission.save();
-
-    res.status(201).json({ message: "Form submitted successfully!" });
-  } catch (error) {
-    console.error("Error submitting form:", error);
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

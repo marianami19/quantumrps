@@ -12,12 +12,40 @@ function UserForm() {
   });
 
   // Function to handle form submission
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault(); // Prevent default form submission
+
+  //   try {
+  //     // Make a POST request to your backend endpoint
+  //     const response = await Axios.post("/submit-form", formData);
+
+  //     if (response.status === 200) {
+  //       console.log("Form submitted successfully!");
+  //       // Reset the form fields after submission (if needed)
+  //       setFormData({
+  //         name: "",
+  //         email: "",
+  //         phone: "",
+  //         squareFootage: "",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error("Error submitting form:", error);
+  //     // Handle any errors (e.g., display an error message to the user)
+  //   }
+  // };
+
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
     try {
       // Make a POST request to your backend endpoint
-      const response = await Axios.post("/submit-form", formData);
+      // Make a POST request to your backend endpoint
+      const response = await Axios.post(
+        "http://localhost:3001/submit-form",
+        formData
+      );
 
       if (response.status === 200) {
         console.log("Form submitted successfully!");
@@ -28,6 +56,9 @@ function UserForm() {
           phone: "",
           squareFootage: "",
         });
+      } else {
+        console.error("Form submission failed. Status:", response.status);
+        // Handle the failure (e.g., display an error message to the user)
       }
     } catch (error) {
       console.error("Error submitting form:", error);

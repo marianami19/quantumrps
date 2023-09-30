@@ -3,7 +3,6 @@ import "../styles/RoofingCalculator.scss";
 
 function RoofingCalculator() {
   // Define state variables for form inputs
-  const [totalSquareFootage, setTotalSquareFootage] = useState(0);
   const [roofingMaterial, setRoofingMaterial] = useState("shingles");
   const [needNewGutters, setNeedNewGutters] = useState(false);
   const [materialSubType, setMaterialSubType] = useState("3-tab");
