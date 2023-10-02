@@ -12,10 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Create a MySQL connection pool (configure with your MySQL details)
 const pool = mysql.createPool({
-  host: "localhost", // If your MySQL server is on the same machine
-  user: "root", // Replace with your MySQL username (usually "root" for XAMPP)
+  host: "bnycrniwlveaoqkdiygk-mysql.services.clever-cloud.com", // If your MySQL server is on the same machine
+  user: "u0efstyvunl4hfey", // Replace with your MySQL username (usually "root" for XAMPP)
   password: "", // Leave it empty if you haven't set a password for your MySQL server in XAMPP
-  database: "quantumrps", // Replace with your database name
+  database: "bnycrniwlveaoqkdiygk", // Replace with your database name
 });
 
 app.post("/submit-form", (req, res) => {
@@ -52,6 +52,7 @@ app.post("/submit-form", (req, res) => {
     });
   });
 });
+m;
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
