@@ -49,7 +49,11 @@ function RoofingCalculator() {
         break;
 
       case "tiles":
+        baseCost = numberOfStories === 1 ? 12.5 : 14;
+        break;
       case "metal":
+        baseCost = numberOfStories === 1 ? 12.5 : 14;
+        break;
       case "Fibre Cement":
         baseCost = numberOfStories === 1 ? 12.5 : 14;
         break;
@@ -62,7 +66,7 @@ function RoofingCalculator() {
     const skylightCost = numberOfSkylights * 500;
     const ridgeVentCost = numberOfRidgeVents * 250;
     const dormerCost = numberOfDormers * 250;
-    const gutterCost = needNewGutters === "Yes" ? 9 : 0;
+    const gutterCost = needNewGutters === "yes" ? 9 : 0;
 
     // Calculate the total cost
     const totalCost =
