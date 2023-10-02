@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+/* .btn-primary {
+  background-color: #0074cc;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  transition: background-color 0.3s ease-in-out;
+  &:hover {
+    background-color: #0056b3;
+  }
+} */
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

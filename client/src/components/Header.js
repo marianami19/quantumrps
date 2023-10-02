@@ -1,15 +1,17 @@
 import React from "react";
-// import './Header.scss';
+// import "./Header.css"; // You can create a CSS file for custom styling if needed
+import logo from "../assets/images/DP.jpg"; // Import your logo image
 
 function Header() {
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container">
+        <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Quantum Roofing
+            <img src={logo} alt="Logo" height={40} width={40} />{" "}
+            {/* Add your logo image here */}
           </a>
-          <button
+          {/* <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -33,7 +35,7 @@ function Header() {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </nav>
     </header>

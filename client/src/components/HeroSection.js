@@ -3,7 +3,7 @@ import "../styles/HeroSection.scss";
 
 function HeroSection() {
   const scrollToSteps = () => {
-    const stepsContainer = document.getElementById("roofingStepsContainer");
+    const stepsContainer = document.getElementById("roofing");
     if (stepsContainer) {
       stepsContainer.scrollIntoView({ behavior: "smooth" });
     }

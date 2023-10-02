@@ -121,7 +121,10 @@ function UserForm() {
                   onChange={handleInputChange}
                 />
               </div>
-              <button type="submit" className="btn btn-primary text-center">
+              <button
+                type="submit"
+                className="btn btn-lg btn-primary text-center"
+              >
                 Submit
               </button>
             </form>
