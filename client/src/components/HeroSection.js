@@ -16,7 +16,7 @@ function HeroSection() {
           <div className="col-md-6">
             <h1 className="hero-title">Welcome to Quantum Roofing</h1>
             <p className="hero-description">
-              Providing professional roofing services since 2005.
+              Providing professional roofing services.
             </p>
             <button className="btn btn-primary btn-lg" onClick={scrollToSteps}>
               Get Started

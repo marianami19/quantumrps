@@ -24,8 +24,10 @@ function RangePopup({ isOpen, onRequestClose, lowerRange, upperRange }) {
       contentLabel="Range Popup"
     >
       <h2>Your Roofing Estimate</h2>
-      <p>Lower Range: ${lowerRange.toFixed(2)}</p>
-      <p>Upper Range: ${upperRange.toFixed(2)}</p>
+      <p>
+        {" "}
+        ${lowerRange.toFixed(2)} - ${upperRange.toFixed(2)}
+      </p>
       <button className="btn btn-primary btn-lg" onClick={onRequestClose}>
         Close
       </button>
