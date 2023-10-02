@@ -51,7 +51,7 @@ function UserForm() {
   };
 
   return (
-    <div className="container-fluid bg-image">
+    <div className="container-fluid bg-image" id="contact">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 form-container">

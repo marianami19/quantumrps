@@ -25,21 +25,22 @@ function RoofingCalculator() {
     needNewGutters
   ) {
     let baseCost = 0;
+    console.log("roofingMaterial", roofingSubType);
 
     // Determine base cost based on roofing material and subtype
     switch (roofingMaterial) {
       case "shingles":
         switch (roofingSubType) {
-          case "3-Tab Shingle":
+          case "3-tab":
             baseCost = numberOfStories === 1 ? 6 : 8;
             break;
-          case "Aluminium Shingle":
-          case "Metal Shingle":
+          case "aluminium":
+          case "metal-shingle":
             baseCost = numberOfStories === 1 ? 12.5 : 14;
             break;
-          case "Architectural Shingle":
-          case "Asphalt Shingle":
-          case "Synthetic Comp Shingle":
+          case "architectural":
+          case "asphalt":
+          case "synthetic-comp":
             baseCost = numberOfStories === 1 ? 8 : 10;
             break;
           default:
@@ -48,7 +49,7 @@ function RoofingCalculator() {
         break;
 
       case "tiles":
-      case "Metal":
+      case "metal":
       case "Fibre Cement":
         baseCost = numberOfStories === 1 ? 12.5 : 14;
         break;
@@ -287,13 +288,14 @@ function RoofingCalculator() {
             <div className="col-md-3">
               <div className="form-group">
                 <label>Storeys</label>
-                <input
-                  type="number"
-                  min="0"
+                <select
                   className="form-control"
                   value={numberOfStories}
                   onChange={(e) => setNumberOfStories(e.target.value)}
-                />
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
               </div>
             </div>
             <div className="col-md-3">

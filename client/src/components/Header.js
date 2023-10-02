@@ -46,7 +46,7 @@ function Header() {
                   onClick={(e) => {
                     e.preventDefault();
                     document
-                      .getElementById("tips")
+                      .getElementById("roofingStepsContainer")
                       .scrollIntoView({ behavior: "smooth" });
                   }}
                 >
@@ -60,7 +60,7 @@ function Header() {
                   onClick={(e) => {
                     e.preventDefault();
                     document
-                      .getElementById("contact-us")
+                      .getElementById("contact")
                       .scrollIntoView({ behavior: "smooth" });
                   }}
                 >
