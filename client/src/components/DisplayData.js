@@ -30,7 +30,7 @@ function DisplayData() {
   return (
     <div>
       <h2>View Saved Data</h2>
-      <ul>
+      <ol>
         {data.map((item, index) => (
           <li key={index}>
             {/* Display data properties as needed */}
@@ -38,7 +38,7 @@ function DisplayData() {
             Footage: {item.squareFootage}
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 }
