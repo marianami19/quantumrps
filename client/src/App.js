@@ -6,6 +6,8 @@ import RoofingCalculator from "./components/RoofingCalculator";
 import RoofMeasurementInstructions from "./components/RoofMeasurementInstructions";
 import UserForm from "./components/UserForm";
 import Footer from "./components/Footer";
+import DisplayData from "./components/DisplayData";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -16,6 +18,13 @@ function App() {
       <RoofMeasurementInstructions />
       <UserForm />
       <Footer />
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/userlist" element={<DisplayData />} />
+          {/* Define more routes as needed */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
