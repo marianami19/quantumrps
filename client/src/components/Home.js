@@ -5,11 +5,13 @@ import RoofingCalculator from "./RoofingCalculator";
 import RoofMeasurementInstructions from "./RoofMeasurementInstructions";
 import UserForm from "./UserForm";
 import Footer from "./Footer";
+import RoofMap from "./RoofMap";
 
 const Home = () => {
   return (
     <Fragment>
       <Header />
+      <RoofMap />
       <HeroSection />
       <RoofingCalculator />
       <RoofMeasurementInstructions />

@@ -2,13 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const cors = require("cors"); // Import cors package
-
+const axios = require("axios");
 const app = express();
 app.use(cors()); // Enable CORS for all routes
 // const app = express();
 // app.use(bodyParser.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const GOOGLE_API_KEY = "AIzaSyCYzCrSsdlzoUUA2ly8ZhFDn8geSbSGaKc"; // Replace with your Google API Key
 
 // Create a MySQL connection pool (configure with your MySQL details)
 const pool = mysql.createPool({
@@ -77,6 +79,56 @@ app.get("/view-data", (req, res) => {
       res.status(200).json(results);
     });
   });
+});
+
+// Route to fetch autocomplete predictions from Google Places API
+app.get("/autocomplete", async (req, res) => {
+  try {
+    const { input } = req.query;
+    const apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${GOOGLE_API_KEY}`;
+    const response = await axios.get(apiUrl);
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "An error occurred while fetching autocomplete predictions.",
+    });
+  }
+});
+
+// Endpoint for fetching autocomplete suggestions
+app.get("/autocomplete", async (req, res) => {
+  try {
+    const input = req.query.input;
+    const country = req.query.country || ""; // Optionally, you can pass the country parameter
+
+    // Make a request to the Google Places Autocomplete API
+    const response = await axios.get(
+      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&country=us&key=${GOOGLE_API_KEY}`
+    );
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching autocomplete suggestions:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
+// Endpoint for fetching solar measurements based on the selected address
+app.get("/solar", async (req, res) => {
+  try {
+    const address = req.query.address;
+
+    // Make a request to your solar measurement API (replace with your actual API)
+    const response = await axios.get(
+      `http://your-solar-api-url/solar?address=${address}`
+    );
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching solar data:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 const PORT = 3306;
