@@ -100,11 +100,10 @@ app.get("/autocomplete", async (req, res) => {
 app.get("/autocomplete", async (req, res) => {
   try {
     const input = req.query.input;
-    const country = req.query.country || ""; // Optionally, you can pass the country parameter
 
-    // Make a request to the Google Places Autocomplete API
+    // Make a request to the Google Places Autocomplete API with components=country:us
     const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&country=us&key=${GOOGLE_API_KEY}`
+      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&components=country:us&region=us&key=${GOOGLE_API_KEY}`
     );
 
     res.json(response.data);
@@ -127,6 +126,24 @@ app.get("/solar", async (req, res) => {
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching solar data:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
+// Endpoint for fetching coordinates based on place_id
+app.get("/geocode", async (req, res) => {
+  try {
+    const placeId = req.query.place_id;
+
+    // Make a request to the Google Geocoding API
+    const response = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=${GOOGLE_API_KEY}`
+    );
+
+    const location = response.data.results[0].geometry.location;
+    res.json({ location });
+  } catch (error) {
+    console.error("Error fetching coordinates:", error);
     res.status(500).json({ error: "An error occurred" });
   }
 });

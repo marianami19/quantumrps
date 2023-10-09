@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
-import "../styles/RoofMap.scss"; // Import your SCSS file
+import L from "leaflet";
+import "../styles/RoofMap.scss";
 
 function RoofMap() {
   const [address, setAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [mapData, setMapData] = useState(null);
-  const [showSuggestions, setShowSuggestions] = useState(true); // Control visibility of suggestions
+  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [coordinates, setCoordinates] = useState(null);
+  const [map, setMap] = useState(null); // Store the map instance
 
   useEffect(() => {
-    // Function to fetch autocomplete suggestions
     const fetchSuggestions = async () => {
       try {
         const response = await axios.get(
@@ -23,37 +25,58 @@ function RoofMap() {
       }
     };
 
-    // Fetch suggestions when the address input changes
     if (address) {
       fetchSuggestions();
     } else {
-      setSuggestions([]); // Clear suggestions when the input is empty
+      setSuggestions([]);
     }
   }, [address]);
 
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
-    setShowSuggestions(true); // Allow suggestions to be displayed when input changes
+    setShowSuggestions(true);
   };
 
-  const handleSelectAddress = (selected) => {
-    setSelectedAddress(selected);
-    setAddress(selected); // Update the input field with the selected suggestion
-    setShowSuggestions(false); // Hide suggestions after selection
-  };
+  const handleSelectAddress = async (selected) => {
+    setSelectedAddress(selected.description); // Set the description as the selected address
+    setAddress(selected.description); // Update the input field with the selected suggestion
+    setShowSuggestions(false);
 
-  const handleShowMap = async () => {
     try {
-      // Make an API request to fetch roof measurements using the selectedAddress
-      const response = await axios.get(
-        `http://localhost:3306/solar?address=${selectedAddress}`
+      const geoResponse = await axios.get(
+        `http://localhost:3306/geocode?place_id=${selected.place_id}`
       );
-      // Store the map data in state
-      setMapData(response.data);
+
+      const location = geoResponse.data.location;
+      setCoordinates(location);
+
+      // You can now use the coordinates to place markers on the map.
     } catch (error) {
-      console.error("Error fetching map data:", error);
+      console.error("Error fetching coordinates:", error);
     }
   };
+
+  useEffect(() => {
+    // Initialize the map and add a marker at the selected coordinates
+    if (coordinates) {
+      if (map) {
+        map.remove(); // Remove the previous map instance
+      }
+
+      const newMap = L.map("map").setView(
+        [coordinates.lat, coordinates.lng],
+        15
+      );
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(newMap);
+      L.marker([coordinates.lat, coordinates.lng]).addTo(newMap);
+
+      // Store the new map instance
+      setMap(newMap);
+    }
+  }, [coordinates]);
 
   return (
     <div>
@@ -68,21 +91,17 @@ function RoofMap() {
           {suggestions.map((suggestion) => (
             <li
               key={suggestion.place_id}
-              onClick={() => handleSelectAddress(suggestion.description)}
+              onClick={() => handleSelectAddress(suggestion)}
             >
               {suggestion.description}
             </li>
           ))}
         </ul>
       )}
-      <button onClick={handleShowMap}>Show Map</button>
 
-      {mapData && (
-        <div>
-          {/* Render the map using mapData */}
-          {/* You can use a mapping library like Google Maps or Leaflet here */}
-        </div>
-      )}
+      <div>
+        <div id="map" style={{ width: "100%", height: "400px" }}></div>
+      </div>
     </div>
   );
 }
