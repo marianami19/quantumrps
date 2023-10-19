@@ -5,7 +5,6 @@ import GoogleMapReact from 'google-map-react'
 import { Icon } from '@iconify/react'
 import locationIcon from '@iconify/icons-mdi/map-marker'
 
-
 function RoofMap() {
   const [address, setAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -13,6 +12,7 @@ function RoofMap() {
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [coordinates, setCoordinates] = useState(null);
   const [map, setMap] = useState(null); // Store the map instance
+  const [clickedCoordinates, setClickedCoordinates] = useState(null);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -57,6 +57,14 @@ function RoofMap() {
     }
   };
 
+  const handleMapClick = ({ x, y, lat, lng, event }) => {
+    // Capture the clicked point's coordinates
+    setClickedCoordinates({ lat, lng });
+    console.log(lat)
+    console.log(lng)
+    console.log('lng')
+  };
+
   useEffect(() => {
     if (coordinates) {
       if (map) {
@@ -64,7 +72,6 @@ function RoofMap() {
       }
     }
   }, [coordinates, map]);
-
 
   return (
     <div>
@@ -87,8 +94,7 @@ function RoofMap() {
         </ul>
       )}
 
-
-    <div style={{ height: "400px", width: "100%" }}>
+      <div style={{ height: "400px", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ' }}
           defaultCenter={{
@@ -97,6 +103,7 @@ function RoofMap() {
           }}
           defaultZoom={17}
           onGoogleApiLoaded={({ map }) => setMap(map)}
+          onClick={handleMapClick} // Capture click events
           options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
         >
           {coordinates && (
@@ -106,18 +113,30 @@ function RoofMap() {
               text={selectedAddress}
             />
           )}
+
+          {clickedCoordinates && (
+            <MarkerPin
+              lat={clickedCoordinates.lat}
+              lng={clickedCoordinates.lng}
+            />
+          )}
         </GoogleMapReact>
       </div>
     </div>
   );
 }
 
-export default RoofMap;
-
-
 const LocationPin = ({ text }) => (
   <div className="pin">
     <Icon icon={locationIcon} className="pin-icon" />
     <p className="pin-text">{text}</p>
   </div>
-)
+);
+
+const MarkerPin = () => (
+  <div className="marker-pin">
+    <Icon icon={locationIcon} className="pin-icon" />
+  </div>
+);
+
+export default RoofMap;
