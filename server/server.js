@@ -10,7 +10,7 @@ app.use(cors()); // Enable CORS for all routes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const GOOGLE_API_KEY = "AIzaSyCYzCrSsdlzoUUA2ly8ZhFDn8geSbSGaKc"; // Replace with your Google API Key
+const GOOGLE_API_KEY = "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ"; // Replace with your Google API Key
 
 // Create a MySQL connection pool (configure with your MySQL details)
 const pool = mysql.createPool({

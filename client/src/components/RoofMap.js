@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 import "../styles/RoofMap.scss";
+import GoogleMapReact from 'google-map-react'
+import { Icon } from '@iconify/react'
+import locationIcon from '@iconify/icons-mdi/map-marker'
+
 
 function RoofMap() {
   const [address, setAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
-  const [mapData, setMapData] = useState(null);
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [coordinates, setCoordinates] = useState(null);
   const [map, setMap] = useState(null); // Store the map instance
@@ -57,26 +58,13 @@ function RoofMap() {
   };
 
   useEffect(() => {
-    // Initialize the map and add a marker at the selected coordinates
     if (coordinates) {
       if (map) {
-        map.remove(); // Remove the previous map instance
+        map.panTo({ lat: coordinates.lat, lng: coordinates.lng });
       }
-
-      const newMap = L.map("map").setView(
-        [coordinates.lat, coordinates.lng],
-        15
-      );
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(newMap);
-      L.marker([coordinates.lat, coordinates.lng]).addTo(newMap);
-
-      // Store the new map instance
-      setMap(newMap);
     }
-  }, [coordinates]);
+  }, [coordinates, map]);
+
 
   return (
     <div>
@@ -99,11 +87,37 @@ function RoofMap() {
         </ul>
       )}
 
-      <div>
-        <div id="map" style={{ width: "100%", height: "400px" }}></div>
+
+    <div style={{ height: "400px", width: "100%" }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: 'AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ' }}
+          defaultCenter={{
+            lat: coordinates ? coordinates.lat : 0,
+            lng: coordinates ? coordinates.lng : 0,
+          }}
+          defaultZoom={17}
+          onGoogleApiLoaded={({ map }) => setMap(map)}
+          options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+        >
+          {coordinates && (
+            <LocationPin
+              lat={coordinates.lat}
+              lng={coordinates.lng}
+              text={selectedAddress}
+            />
+          )}
+        </GoogleMapReact>
       </div>
     </div>
   );
 }
 
 export default RoofMap;
+
+
+const LocationPin = ({ text }) => (
+  <div className="pin">
+    <Icon icon={locationIcon} className="pin-icon" />
+    <p className="pin-text">{text}</p>
+  </div>
+)
