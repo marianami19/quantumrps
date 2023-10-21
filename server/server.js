@@ -148,6 +148,23 @@ app.get("/geocode", async (req, res) => {
   }
 });
 
+
+app.get('/solar-data', async (req, res) => {
+  try {
+    const { latitude, longitude } = req.query;
+
+    const solarResponse = await axios.get(
+      `https://solar.googleapis.com/v1/buildingInsights:findClosest?location.latitude=${latitude}&location.longitude=${longitude}&requiredQuality=HIGH&key=${GOOGLE_API_KEY}`
+    );
+
+
+    res.json({ squareFootArea: solarResponse.data.solarPotential.wholeRoofStats.areaMeters2 });
+  } catch (error) {
+    // console.error('Error fetching solar data:', error);
+    res.status(500).json({ error: 'Could not fetch solar data' });
+  }
+});
+
 const PORT = 3306;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

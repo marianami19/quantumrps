@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../styles/RoofMap.scss";
-import GoogleMapReact from 'google-map-react'
-import { Icon } from '@iconify/react'
-import locationIcon from '@iconify/icons-mdi/map-marker'
+import "leaflet/dist/leaflet.css";
+import GoogleMapReact from "google-map-react";
+import Marker from "./Marker"
+import { Icon } from "@iconify/react";
+import locationIcon from "@iconify/icons-mdi/map-marker";
 
 function RoofMap() {
   const [address, setAddress] = useState("");
@@ -12,7 +13,9 @@ function RoofMap() {
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [coordinates, setCoordinates] = useState(null);
   const [map, setMap] = useState(null); // Store the map instance
-  const [clickedCoordinates, setClickedCoordinates] = useState(null);
+  
+  const [isDataAvailable, setIsDataAvailable] = useState(false);
+  const [squareFootArea, setSquareFootArea] = useState(null);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -39,8 +42,8 @@ function RoofMap() {
   };
 
   const handleSelectAddress = async (selected) => {
-    setSelectedAddress(selected.description); // Set the description as the selected address
-    setAddress(selected.description); // Update the input field with the selected suggestion
+    setSelectedAddress(selected.description);
+    setAddress(selected.description);
     setShowSuggestions(false);
 
     try {
@@ -50,19 +53,30 @@ function RoofMap() {
 
       const location = geoResponse.data.location;
       setCoordinates(location);
-
-      // You can now use the coordinates to place markers on the map.
+      setIsDataAvailable(true); // Latitude and Longitude data is available
     } catch (error) {
       console.error("Error fetching coordinates:", error);
     }
   };
 
+
+  const handleNextClick = async () => {
+    try {
+      // Send a request to the backend endpoint to fetch solar data
+      const solarResponse = await axios.get(
+        `http://localhost:3306/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+      );
+  
+      // Extract the square foot area from the response
+      const area = solarResponse.data.squareFootArea;
+      setSquareFootArea(area);
+    } catch (error) {
+      console.error('Error fetching square foot area:', error);
+    }
+  };
+
   const handleMapClick = ({ x, y, lat, lng, event }) => {
-    // Capture the clicked point's coordinates
-    setClickedCoordinates({ lat, lng });
-    console.log(lat)
-    console.log(lng)
-    console.log('lng')
+    setCoordinates({ lat, lng });
   };
 
   useEffect(() => {
@@ -95,48 +109,41 @@ function RoofMap() {
       )}
 
       <div style={{ height: "400px", width: "100%" }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ' }}
+        {coordinates && coordinates.lat && coordinates.lng && <GoogleMapReact
+          bootstrapURLKeys={{
+            key: "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ",
+          }}
           defaultCenter={{
-            lat: coordinates ? coordinates.lat : 0,
-            lng: coordinates ? coordinates.lng : 0,
+            lat: coordinates.lat,
+            lng: coordinates.lng,
           }}
           defaultZoom={17}
           onGoogleApiLoaded={({ map }) => setMap(map)}
-          onClick={handleMapClick} // Capture click events
-          options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+          onClick={handleMapClick}
+          options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+          zoom={10}
         >
-          {coordinates && (
-            <LocationPin
-              lat={coordinates.lat}
-              lng={coordinates.lng}
-              text={selectedAddress}
-            />
-          )}
-
-          {clickedCoordinates && (
-            <MarkerPin
-              lat={clickedCoordinates.lat}
-              lng={clickedCoordinates.lng}
-            />
-          )}
-        </GoogleMapReact>
+          <Marker
+            text="My home"
+            lat={coordinates.lat}
+            lng={coordinates.lng}
+            onClick={() => map.setCenter({ lat: coordinates.lat + Math.random(), lng: coordinates.lng + Math.random() })}
+          />
+        </GoogleMapReact>}
       </div>
+
+      <button onClick={handleNextClick} disabled={!isDataAvailable}>
+        Next
+      </button>
+      {squareFootArea && (
+        <div>
+          Square Foot Area: {squareFootArea} sqft
+        </div>
+      )}
     </div>
   );
 }
 
-const LocationPin = ({ text }) => (
-  <div className="pin">
-    <Icon icon={locationIcon} className="pin-icon" />
-    <p className="pin-text">{text}</p>
-  </div>
-);
 
-const MarkerPin = () => (
-  <div className="marker-pin">
-    <Icon icon={locationIcon} className="pin-icon" />
-  </div>
-);
 
 export default RoofMap;
