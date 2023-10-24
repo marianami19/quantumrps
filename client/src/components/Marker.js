@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import "../styles/Marker.scss";
 
 const markerStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
-  width: '18px',
-  height: '18px',
-  backgroundColor: '#000',
-  border: '2px solid #fff',
-  borderRadius: '100%',
-  userSelect: 'none',
+  width: '30px', // Adjust the size as needed
+  height: '30px', // Adjust the size as needed
   transform: 'translate(-50%, -50%)',
 };
 
@@ -19,7 +18,7 @@ const Marker = ({ text, onClick }) => (
     style={{ ...markerStyle, cursor: onClick ? 'pointer' : 'default' }}
     onClick={onClick}
   >
-    {text}
+    <FontAwesomeIcon icon={faHome} color="#FFF" className='fa-border marker' size="2x" />
   </div>
 );
 

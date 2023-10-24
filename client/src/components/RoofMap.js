@@ -5,7 +5,12 @@ import GoogleMapReact from "google-map-react";
 import Marker from "./Marker"
 import { Icon } from "@iconify/react";
 import locationIcon from "@iconify/icons-mdi/map-marker";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faMagnifyingGlass
+} from '@fortawesome/free-solid-svg-icons';
 
+import "../styles/RoofMap.scss";
 function RoofMap() {
   const [address, setAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -13,7 +18,7 @@ function RoofMap() {
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [coordinates, setCoordinates] = useState(null);
   const [map, setMap] = useState(null); // Store the map instance
-  
+
   const [isDataAvailable, setIsDataAvailable] = useState(false);
   const [squareFootArea, setSquareFootArea] = useState(null);
 
@@ -66,7 +71,7 @@ function RoofMap() {
       const solarResponse = await axios.get(
         `http://localhost:3306/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
       );
-  
+
       // Extract the square foot area from the response
       const area = solarResponse.data.squareFootArea;
       setSquareFootArea(area);
@@ -88,27 +93,41 @@ function RoofMap() {
   }, [coordinates, map]);
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Enter an address"
-        value={address}
-        onChange={handleAddressChange}
-      />
-      {showSuggestions && suggestions.length > 0 && (
-        <ul>
-          {suggestions.map((suggestion) => (
-            <li
-              key={suggestion.place_id}
-              onClick={() => handleSelectAddress(suggestion)}
-            >
-              {suggestion.description}
-            </li>
-          ))}
-        </ul>
-      )}
 
-      <div style={{ height: "400px", width: "100%" }}>
+    <div>
+      <div class="container">
+
+        <div class="row height d-flex justify-content-center align-items-center">
+
+          <div class="col-md-6">
+
+            <div class="form">
+              <FontAwesomeIcon className="fa-search" icon={faMagnifyingGlass} />
+              <input type="text" class="form-control form-input" placeholder="Enter an address..." value={address}
+                onChange={handleAddressChange} />
+              {showSuggestions && suggestions.length > 0 && (
+               <ul className="list-group">
+               {suggestions.map((suggestion) => (
+                 <li
+                   key={suggestion.place_id}
+                   onClick={() => handleSelectAddress(suggestion)}
+                   className="list-group-item list-group-item-action"
+                 >
+                   {suggestion.description}
+                 </li>
+               ))}
+             </ul>
+             
+              )}
+
+
+              
+            </div>
+
+
+          </div>
+
+      <div  style={{ height: "400px", width: "100%" }}>
         {coordinates && coordinates.lat && coordinates.lng && <GoogleMapReact
           bootstrapURLKeys={{
             key: "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ",
@@ -131,8 +150,8 @@ function RoofMap() {
           />
         </GoogleMapReact>}
       </div>
-
-      <button onClick={handleNextClick} disabled={!isDataAvailable}>
+        </div>
+      <button  className="btn btn-primary btn-lg" onClick={handleNextClick} disabled={!isDataAvailable}>
         Next
       </button>
       {squareFootArea && (
@@ -140,6 +159,12 @@ function RoofMap() {
           Square Foot Area: {squareFootArea} sqft
         </div>
       )}
+ 
+
+      </div>
+
+
+
     </div>
   );
 }

@@ -11,8 +11,8 @@ const Home = () => {
   return (
     <Fragment>
       <Header />
-      <RoofMap />
       <HeroSection />
+      <RoofMap />
       <RoofingCalculator />
       <RoofMeasurementInstructions />
       <UserForm />
