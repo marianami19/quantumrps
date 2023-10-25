@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons';
-
+import RoofingCalculator from "../components/RoofingCalculator";
 import "../styles/RoofMap.scss";
 function RoofMap() {
   const [address, setAddress] = useState("");
@@ -18,9 +18,25 @@ function RoofMap() {
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [coordinates, setCoordinates] = useState(null);
   const [map, setMap] = useState(null); // Store the map instance
-
   const [isDataAvailable, setIsDataAvailable] = useState(false);
   const [squareFootArea, setSquareFootArea] = useState(null);
+  const [currentStep, setCurrentStep] = useState("roofMap");
+
+  const handleNextClick = async () => {
+    if (currentStep === "roofMap") {
+      // Transition to the Roofing Calculator step
+      setCurrentStep("roofingCalculator");
+      // Continue with your existing logic to fetch solar data
+    }
+  };
+
+  const handleBackClick = () => {
+    if (currentStep === "roofingCalculator") {
+      // Transition back to the Roof Map step
+      setCurrentStep("roofMap");
+      // You may also want to reset some state variables if needed
+    }
+  };
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -40,6 +56,8 @@ function RoofMap() {
       setSuggestions([]);
     }
   }, [address]);
+
+
 
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
@@ -65,7 +83,11 @@ function RoofMap() {
   };
 
 
-  const handleNextClick = async () => {
+  const handleNext = async () => {
+    if (currentStep === "roofMap") {
+      // Transition to the Roofing Calculator step
+      setCurrentStep("roofingCalculator");
+      // Continue with your existing logic to fetch solar data
     try {
       // Send a request to the backend endpoint to fetch solar data
       const solarResponse = await axios.get(
@@ -78,6 +100,7 @@ function RoofMap() {
     } catch (error) {
       console.error('Error fetching square foot area:', error);
     }
+  }
   };
 
   const handleMapClick = ({ x, y, lat, lng, event }) => {
@@ -92,81 +115,89 @@ function RoofMap() {
     }
   }, [coordinates, map]);
 
+
+
   return (
 
     <div>
-      <div class="container">
+      {currentStep === "roofMap" && (
+        <div className="container">
 
-        <div class="row height d-flex justify-content-center align-items-center">
+          <div className="row height d-flex justify-content-center align-items-center">
 
-          <div class="col-md-6">
+            <div className="col-md-6">
 
-            <div class="form">
-              <FontAwesomeIcon className="fa-search" icon={faMagnifyingGlass} />
-              <input type="text" class="form-control form-input" placeholder="Enter an address..." value={address}
-                onChange={handleAddressChange} />
-              {showSuggestions && suggestions.length > 0 && (
-               <ul className="list-group">
-               {suggestions.map((suggestion) => (
-                 <li
-                   key={suggestion.place_id}
-                   onClick={() => handleSelectAddress(suggestion)}
-                   className="list-group-item list-group-item-action"
-                 >
-                   {suggestion.description}
-                 </li>
-               ))}
-             </ul>
-             
-              )}
+              <div className="form">
+                <FontAwesomeIcon className="fa-search" icon={faMagnifyingGlass} />
+                <input type="text" className="form-control form-input" placeholder="Enter an address..." value={address}
+                  onChange={handleAddressChange} />
+                {showSuggestions && suggestions.length > 0 && (
+                  <ul className="list-group">
+                    {suggestions.map((suggestion) => (
+                      <li
+                        key={suggestion.place_id}
+                        onClick={() => handleSelectAddress(suggestion)}
+                        className="list-group-item list-group-item-action"
+                      >
+                        {suggestion.description}
+                      </li>
+                    ))}
+                  </ul>
+
+                )}
 
 
-              
+
+              </div>
+
+
             </div>
 
-
+            <div style={{ height: "400px", width: "100%", border: "3px ridge #0052a4c2" }}>
+              {coordinates && coordinates.lat && coordinates.lng && <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ",
+                }}
+                defaultCenter={{
+                  lat: coordinates.lat,
+                  lng: coordinates.lng,
+                }}
+                defaultZoom={17}
+                onGoogleApiLoaded={({ map }) => setMap(map)}
+                onClick={handleMapClick}
+                options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+                // zoom={10}
+              >
+                <Marker
+                  text="My home"
+                  lat={coordinates.lat}
+                  lng={coordinates.lng}
+                  // onClick={() => map.setCenter({ lat: coordinates.lat + Math.random(), lng: coordinates.lng + Math.random() })}
+                />
+              </GoogleMapReact>}
+            </div>
           </div>
+          {isDataAvailable &&
+            <button className="btn btn-primary btn-lg" onClick={handleNext} >
+              Next
+            </button>
+          }
 
-      <div  style={{ height: "400px", width: "100%" }}>
-        {coordinates && coordinates.lat && coordinates.lng && <GoogleMapReact
-          bootstrapURLKeys={{
-            key: "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ",
-          }}
-          defaultCenter={{
-            lat: coordinates.lat,
-            lng: coordinates.lng,
-          }}
-          defaultZoom={17}
-          onGoogleApiLoaded={({ map }) => setMap(map)}
-          onClick={handleMapClick}
-          options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
-          zoom={10}
-        >
-          <Marker
-            text="My home"
-            lat={coordinates.lat}
-            lng={coordinates.lng}
-            onClick={() => map.setCenter({ lat: coordinates.lat + Math.random(), lng: coordinates.lng + Math.random() })}
-          />
-        </GoogleMapReact>}
-      </div>
-        </div>
-      <button  className="btn btn-primary btn-lg" onClick={handleNextClick} disabled={!isDataAvailable}>
-        Next
-      </button>
-      {squareFootArea && (
-        <div>
-          Square Foot Area: {squareFootArea} sqft
+
         </div>
       )}
- 
 
-      </div>
-
+      {currentStep === "roofingCalculator" && (
+        <RoofingCalculator  onBackClick={handleBackClick}
+        />
+      )}
 
 
     </div>
   );
+
+
+
 }
 
 

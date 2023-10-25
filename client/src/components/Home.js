@@ -13,8 +13,8 @@ const Home = () => {
       <Header />
       <HeroSection />
       <RoofMap />
-      <RoofingCalculator />
-      <RoofMeasurementInstructions />
+      {/* <RoofingCalculator /> */}
+      {/* <RoofMeasurementInstructions /> */}
       <UserForm />
       <Footer />
     </Fragment>
