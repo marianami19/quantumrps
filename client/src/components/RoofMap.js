@@ -6,6 +6,9 @@ import Marker from "./Marker"
 import { Icon } from "@iconify/react";
 import locationIcon from "@iconify/icons-mdi/map-marker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+import { Alert } from 'react-bootstrap';
+
 import {
   faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons';
@@ -21,6 +24,9 @@ function RoofMap() {
   const [isDataAvailable, setIsDataAvailable] = useState(false);
   const [squareFootArea, setSquareFootArea] = useState(null);
   const [currentStep, setCurrentStep] = useState("roofMap");
+  const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
+
 
   const handleNextClick = async () => {
     if (currentStep === "roofMap") {
@@ -47,6 +53,8 @@ function RoofMap() {
         setSuggestions(response.data.predictions);
       } catch (error) {
         console.error("Error fetching suggestions:", error);
+        setError('Error fetching data. Please try again.');
+        setShowError(true);
       }
     };
 
@@ -79,6 +87,8 @@ function RoofMap() {
       setIsDataAvailable(true); // Latitude and Longitude data is available
     } catch (error) {
       console.error("Error fetching coordinates:", error);
+      setError('Error fetching data. Please try again.');
+      setShowError(true);
     }
   };
 
@@ -86,21 +96,24 @@ function RoofMap() {
   const handleNext = async () => {
     if (currentStep === "roofMap") {
       // Transition to the Roofing Calculator step
-      setCurrentStep("roofingCalculator");
       // Continue with your existing logic to fetch solar data
-    try {
-      // Send a request to the backend endpoint to fetch solar data
-      const solarResponse = await axios.get(
-        `http://localhost:3306/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
-      );
+      try {
+        // Send a request to the backend endpoint to fetch solar data
+        const solarResponse = await axios.get(
+          `http://localhost:3306/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+        );
 
-      // Extract the square foot area from the response
-      const area = solarResponse.data.squareFootArea;
-      setSquareFootArea(area);
-    } catch (error) {
-      console.error('Error fetching square foot area:', error);
+        // Extract the square foot area from the response
+        const area = solarResponse.data.squareFootArea;
+        setSquareFootArea(area);
+        setCurrentStep("roofingCalculator");
+        console.log(area)
+      } catch (error) {
+        console.error('Error fetching square foot area:', error);
+        setError('Error fetching Roof Data. Please try another place.');
+        setShowError(true);
+      }
     }
-  }
   };
 
   const handleMapClick = ({ x, y, lat, lng, event }) => {
@@ -166,13 +179,13 @@ function RoofMap() {
                 onGoogleApiLoaded={({ map }) => setMap(map)}
                 onClick={handleMapClick}
                 options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
-                // zoom={10}
+              // zoom={10}
               >
                 <Marker
                   text="My home"
                   lat={coordinates.lat}
                   lng={coordinates.lng}
-                  // onClick={() => map.setCenter({ lat: coordinates.lat + Math.random(), lng: coordinates.lng + Math.random() })}
+                // onClick={() => map.setCenter({ lat: coordinates.lat + Math.random(), lng: coordinates.lng + Math.random() })}
                 />
               </GoogleMapReact>}
             </div>
@@ -188,10 +201,13 @@ function RoofMap() {
       )}
 
       {currentStep === "roofingCalculator" && (
-        <RoofingCalculator  onBackClick={handleBackClick}
+        <RoofingCalculator onBackClick={handleBackClick}
         />
       )}
-
+      {/* Display the error using the Alert component */}
+      <Alert variant="danger" show={showError} onClose={() => setShowError(false)} dismissible>
+        {error}
+      </Alert>
 
     </div>
   );

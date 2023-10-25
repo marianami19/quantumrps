@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/images/DP.jpg"; // Import your logo image
+import {Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -25,48 +26,14 @@ function Header() {
             id="navbarNav"
           >
             <ul className="navbar-nav ml-auto">
+             
               <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#calculate-estimate"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("roofing")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Calculate Estimate
-                </a>
+              <Link   className="nav-link" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#tips"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("roofingStepsContainer")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Tips
-                </a>
+              <Link   className="nav-link" to="/about-us">About</Link>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#contact-us"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("contact")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Contact Us
-                </a>
-              </li>
+             
             </ul>
           </div>
         </div>
