@@ -1,6 +1,10 @@
 import React, { useState,useCallback } from "react";
 import "../styles/RoofingCalculator.scss";
 import RangePopup from ".././RangePopup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+   faRightLong, faLeftLong
+} from '@fortawesome/free-solid-svg-icons';
 
 function RoofingCalculator({ onBackClick }) {
   // Define state variables for form inputs
@@ -386,18 +390,18 @@ function RoofingCalculator({ onBackClick }) {
 
         {step === 1 && (
           <button className="btn btn-lg btn-secondary" onClick={onBackClick}>
-            Back
+             <FontAwesomeIcon icon={faLeftLong} />
           </button>
         )}
 
         {step > 1 && (
-          <button className="btn btn-lg btn-secondary" onClick={prevStep}>
-            Back
+          <button className="btn btn-lg btn-secondary mx-2" onClick={prevStep}>
+             <FontAwesomeIcon icon={faLeftLong} />
           </button>
         )}
         {step < 4 && (
-          <button className="btn btn-lg btn-primary" onClick={nextStep}>
-            Next
+          <button className="btn btn-lg btn-primary mx-2" onClick={nextStep}>
+             <FontAwesomeIcon icon={faRightLong} />
           </button>
         )
         }

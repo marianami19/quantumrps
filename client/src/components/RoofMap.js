@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Alert } from 'react-bootstrap';
 
 import {
-  faMagnifyingGlass
+  faMagnifyingGlass, faRightLong
 } from '@fortawesome/free-solid-svg-icons';
 import RoofingCalculator from "../components/RoofingCalculator";
 import "../styles/RoofMap.scss";
@@ -110,7 +110,7 @@ function RoofMap() {
         console.log(area)
       } catch (error) {
         console.error('Error fetching square foot area:', error);
-        setError('Error fetching Roof Data. Please try another place.');
+        setError('Data not available for the selected location. Please try another place.');
         setShowError(true);
       }
     }
@@ -134,9 +134,13 @@ function RoofMap() {
 
     <div>
       {currentStep === "roofMap" && (
-        <div className="container">
-
+        <div className="container mb-5">
+        
           <div className="row height d-flex justify-content-center align-items-center">
+          <h1 className="hero-title p-4">Calculate your Roofing Estimate</h1>
+          <p className="hero-description">
+          Type in your address and select your roof on the map
+          </p>
 
             <div className="col-md-6">
 
@@ -166,7 +170,7 @@ function RoofMap() {
 
             </div>
 
-            <div style={{ height: "400px", width: "100%", border: "3px ridge #0052a4c2" }}>
+            <div style={{ height: "400px", width: "100%" }}>
               {coordinates && coordinates.lat && coordinates.lng && <GoogleMapReact
                 bootstrapURLKeys={{
                   key: "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ",
@@ -192,7 +196,7 @@ function RoofMap() {
           </div>
           {isDataAvailable &&
             <button className="btn btn-primary btn-lg" onClick={handleNext} >
-              Next
+             <FontAwesomeIcon icon={faRightLong} />
             </button>
           }
 
@@ -205,7 +209,7 @@ function RoofMap() {
         />
       )}
       {/* Display the error using the Alert component */}
-      <Alert variant="danger" show={showError} onClose={() => setShowError(false)} dismissible>
+      <Alert variant="danger" show={showError && currentStep ==="roofMap"} onClose={() => setShowError(false)} dismissible>
         {error}
       </Alert>
 
