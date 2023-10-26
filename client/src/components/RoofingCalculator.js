@@ -1,12 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, Fragment } from "react";
 import "../styles/RoofingCalculator.scss";
-import RangePopup from ".././RangePopup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faRightLong, faLeftLong
 } from '@fortawesome/free-solid-svg-icons';
 
-function RoofingCalculator({ onBackClick }) {
+function RoofingCalculator({ onBackClick, squareFootArea }) {
   // Define state variables for form inputs
   const [step, setStep] = useState(1);
   const [roofingMaterial, setRoofingMaterial] = useState("shingles");
@@ -17,7 +16,6 @@ function RoofingCalculator({ onBackClick }) {
   const [numberOfSkylights, setNumberOfSkylights] = useState(0);
   const [numberOfRidgeVents, setNumberOfRidgeVents] = useState(0);
   const [numberOfDormers, setNumberOfDormers] = useState(0);
-  const [showPopup, setShowPopup] = useState(false);
   const [lowerRange, setLowerRange] = useState(0);
   const [upperRange, setUpperRange] = useState(0);
 
@@ -46,7 +44,7 @@ function RoofingCalculator({ onBackClick }) {
     needNewGutters
   ) {
     let baseCost = 0;
-    console.log("roofingMaterial", roofingSubType);
+    console.log("roofingMaterial", squareFootArea);
 
     // Determine base cost based on roofing material and subtype
     switch (roofingMaterial) {
@@ -92,8 +90,10 @@ function RoofingCalculator({ onBackClick }) {
     // Calculate the total cost
     const totalCost =
       baseCost + skylightCost + ridgeVentCost + dormerCost + gutterCost;
+    console.log(totalCost)
 
-    return totalCost;
+    let finalTotal = totalCost * squareFootArea;
+    return Math.round(finalTotal)
   }
   // Function to handle form submission
   const handleSubmit = (e) => {
@@ -123,13 +123,12 @@ function RoofingCalculator({ onBackClick }) {
       needNewGutters
     );
     console.log("Total Roofing Cost: $" + totalCost);
-
-    calculateRange(totalCost);
-
     console.log("Lower Range: $" + lowerRange.toFixed(2));
     console.log("Upper Range: $" + upperRange.toFixed(2));
 
-    setShowPopup(true);
+    calculateRange(totalCost);
+
+
   };
 
   // Function to calculate the lower and upper ranges
@@ -169,295 +168,303 @@ function RoofingCalculator({ onBackClick }) {
   };
 
   return (
-    <div id="roofing">
+    <Fragment>
+      <div id="roofing">
 
-      <div className="roofing-calculator">
-        <form onSubmit={handleSubmit}>
-          {/* <div className="form-group">
-          <label>Total Square Footage:</label>
-          <input
-            type="number"
-            name="totalSquareFootage"
-            min="0"
-            placeholder="Enter total square footage"
-            value={totalSquareFootage}
-            onChange={(e) => setTotalSquareFootage(e.target.value)}
-          />
-        </div> */}
+        <div className="roofing-calculator">
+          <form onSubmit={handleSubmit}>
+   
 
-          {step === 1 && (
-            <div className="row  d-flex justify-content-center align-items-center">
-              <h1 className="hero-title p-4">What roofing material do you prefer?</h1>
-              <p className="hero-description">
-                Select the material of your choice
-              </p>
-              <div style={{ height: "400px", width: "100%" }}>
-                <div className="row">
+            {step === 1 && (
+              <div className="row  d-flex justify-content-center align-items-center">
+                <h1 className="hero-title p-4">What roofing material do you prefer?</h1>
+                <p className="hero-description">
+                  Select the material of your choice
+                </p>
+                <div style={{ height: "200px", width: "100%" }}>
+                  <div className="row">
 
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Roofing Material</label>
-                      <select
-                        className="form-control"
-                        value={roofingMaterial}
-                        onChange={(e) => {
-                          setRoofingMaterial(e.target.value);
-                          updateMaterialSubType(e.target.value);
-                        }}
-                      >
-                        <option value="shingles">Shingles</option>
-                        <option value="tiles">Tiles</option>
-                        <option value="metal">Metal</option>
-                        <option value="fiberglass">Fiberglass</option>
-                        <option value="fibercement">Fiber Cement</option>
-                      </select>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Roofing Material</label>
+                        <select
+                          className="form-control"
+                          value={roofingMaterial}
+                          onChange={(e) => {
+                            setRoofingMaterial(e.target.value);
+                            updateMaterialSubType(e.target.value);
+                          }}
+                        >
+                          <option value="shingles">Shingles</option>
+                          <option value="tiles">Tiles</option>
+                          <option value="metal">Metal</option>
+                          <option value="fiberglass">Fiberglass</option>
+                          <option value="fibercement">Fiber Cement</option>
+                        </select>
+
+                      </div>
 
                     </div>
 
-                  </div>
 
 
-
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Material Sub Type</label>
-                      <select
-                        className="form-control"
-                        value={materialSubType}
-                        onChange={(e) => setMaterialSubType(e.target.value)}
-                      >
-                        {roofingMaterial === "shingles" && (
-                          <>
-                            <option value="3-tab">3-Tab Shingle</option>
-                            <option value="aluminium">Aluminium Shingle</option>
-                            <option value="architectural">
-                              Architectural Shingle
-                            </option>
-                            <option value="asphalt">Asphalt Shingle</option>
-                            <option value="metal-shingle">Metal Shingle</option>
-                            <option value="synthetic-comp">
-                              Synthetic Comp Shingle
-                            </option>
-                          </>
-                        )}
-                        {roofingMaterial === "tiles" && (
-                          <>
-                            <option value="concrete">Concrete</option>
-                            <option value="clay">Clay</option>
-                            <option value="glazed">Glazed</option>
-                            <option value="slate">Slate</option>
-                            <option value="steel">Steel</option>
-                          </>
-                        )}
-                        {roofingMaterial === "metal" && (
-                          <>
-                            <option value="aluminium">Aluminium Shingle</option>
-                            <option value="copper-panel">Copper Panel</option>
-                            <option value="corrugated">Corrugated</option>
-                            <option value="corrugated-aluminium">
-                              Corrugated Aluminium
-                            </option>
-                            <option value="ribbed">Ribbed</option>
-                            <option value="standard">Standard</option>
-                            <option value="steel-metal">Steel</option>
-                          </>
-                        )}
-                        {roofingMaterial === "fiberglass" && (
-                          <>
-                            <option value="corrugated">Corrugated</option>
-                          </>
-                        )}
-                        {roofingMaterial === "fibercement" && (
-                          <>
-                            <option value="corrugated">Corrugated</option>
-                            <option value="shake">Shake</option>
-                            <option value="slate-fibercement">Slate</option>
-                          </>
-                        )}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {step === 2 && (
-
-            <div className="row  d-flex justify-content-center align-items-center">
-              <h1 className="hero-title p-4">Do You Need New Gutters?</h1>
-              <p className="hero-description">
-                Select your preference
-              </p>
-              <div style={{ height: "400px", width: "100%" }}>
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="form-group text-center">
-                      {/* <label>Do You Need New Gutters?</label> */}
-                      <div>
-                        <label className="radio-inline">
-                          <input
-                            type="radio"
-                            value="yes"
-                            checked={needNewGutters === true}
-                            onChange={() => setNeedNewGutters(true)}
-                          />
-                          Yes
-                        </label>
-                        <label className="radio-inline">
-                          <input
-                            type="radio"
-                            value="no"
-                            checked={needNewGutters === false}
-                            onChange={() => setNeedNewGutters(false)}
-                          />
-                          No
-                        </label>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Material Sub Type</label>
+                        <select
+                          className="form-control"
+                          value={materialSubType}
+                          onChange={(e) => setMaterialSubType(e.target.value)}
+                        >
+                          {roofingMaterial === "shingles" && (
+                            <>
+                              <option value="3-tab">3-Tab Shingle</option>
+                              <option value="aluminium">Aluminium Shingle</option>
+                              <option value="architectural">
+                                Architectural Shingle
+                              </option>
+                              <option value="asphalt">Asphalt Shingle</option>
+                              <option value="metal-shingle">Metal Shingle</option>
+                              <option value="synthetic-comp">
+                                Synthetic Comp Shingle
+                              </option>
+                            </>
+                          )}
+                          {roofingMaterial === "tiles" && (
+                            <>
+                              <option value="concrete">Concrete</option>
+                              <option value="clay">Clay</option>
+                              <option value="glazed">Glazed</option>
+                              <option value="slate">Slate</option>
+                              <option value="steel">Steel</option>
+                            </>
+                          )}
+                          {roofingMaterial === "metal" && (
+                            <>
+                              <option value="aluminium">Aluminium Shingle</option>
+                              <option value="copper-panel">Copper Panel</option>
+                              <option value="corrugated">Corrugated</option>
+                              <option value="corrugated-aluminium">
+                                Corrugated Aluminium
+                              </option>
+                              <option value="ribbed">Ribbed</option>
+                              <option value="standard">Standard</option>
+                              <option value="steel-metal">Steel</option>
+                            </>
+                          )}
+                          {roofingMaterial === "fiberglass" && (
+                            <>
+                              <option value="corrugated">Corrugated</option>
+                            </>
+                          )}
+                          {roofingMaterial === "fibercement" && (
+                            <>
+                              <option value="corrugated">Corrugated</option>
+                              <option value="shake">Shake</option>
+                              <option value="slate-fibercement">Slate</option>
+                            </>
+                          )}
+                        </select>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-          {step === 3 && (
+            )}
 
-            <div className="row  d-flex justify-content-center align-items-center">
-              <h1 className="hero-title p-4">Tear Off, Removal, and Dumping of Old Roof?</h1>
-              <p className="hero-description">
-                We got that covered too!
-              </p>
-              <div style={{ height: "400px", width: "100%" }}>
-                <div className="row">
-                 
+            {step === 2 && (
 
-                  <div className="col-md-12">
-                    <div className="form-group">
-                      <select
-                        className="form-control"
-                        value={tearOffLayers}
-                        onChange={(e) => setTearOffLayers(e.target.value)}
-                      >
-                        <option value="">Select Option</option>
-                        <option value="yes1">Yes, 1 Layer</option>
-                        <option value="yes2">Yes, 2 Layers</option>
-                        <option value="no">No</option>
-                      </select>
+              <div className="row  d-flex justify-content-center align-items-center">
+                <h1 className="hero-title p-4">Do You Need New Gutters?</h1>
+                <p className="hero-description">
+                  Select your preference
+                </p>
+                <div style={{ height: "200px", width: "100%" }}>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group text-center">
+                        {/* <label>Do You Need New Gutters?</label> */}
+                        <div>
+                          <label className="radio-inline">
+                            <input
+                              type="radio"
+                              value="yes"
+                              checked={needNewGutters === true}
+                              onChange={() => setNeedNewGutters(true)}
+                            />
+                            Yes
+                          </label>
+                          <label className="radio-inline">
+                            <input
+                              type="radio"
+                              value="no"
+                              checked={needNewGutters === false}
+                              onChange={() => setNeedNewGutters(false)}
+                            />
+                            No
+                          </label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+            {step === 3 && (
 
-          {step === 4 && (
+              <div className="row  d-flex justify-content-center align-items-center">
+                <h1 className="hero-title p-4">Tear Off, Removal, and Dumping of Old Roof?</h1>
+                <p className="hero-description">
+                  We got that covered too!
+                </p>
+                <div style={{ height: "200px", width: "100%" }}>
+                  <div className="row">
 
-            <div className="row  d-flex justify-content-center align-items-center">
-              <h1 className="hero-title p-4">A little more about your roof...</h1>
-              <p className="hero-description">
-                Number of ...
-              </p>
-              <div style={{ height: "400px", width: "100%" }}>
-                <div className="row">
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Storeys</label>
-                      <select
-                        className="form-control"
-                        value={numberOfStories}
-                        onChange={(e) => setNumberOfStories(e.target.value)}
-                      >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Skylights</label>
-                      <input
-                        type="number"
-                        min="0"
-                        className="form-control"
-                        value={numberOfSkylights}
-                        onChange={(e) => setNumberOfSkylights(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Ridge Vents</label>
-                      <input
-                        type="number"
-                        min="0"
-                        className="form-control"
-                        value={numberOfRidgeVents}
-                        onChange={(e) => setNumberOfRidgeVents(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Dormers</label>
-                      <input
-                        type="number"
-                        min="0"
-                        className="form-control"
-                        value={numberOfDormers}
-                        onChange={(e) => setNumberOfDormers(e.target.value)}
-                      />
+
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <select
+                          className="form-control"
+                          value={tearOffLayers}
+                          onChange={(e) => setTearOffLayers(e.target.value)}
+                        >
+                          <option value="">Select Option</option>
+                          <option value="yes1">Yes, 1 Layer</option>
+                          <option value="yes2">Yes, 2 Layers</option>
+                          <option value="no">No</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            )}
+
+            {step === 4 && (
+
+              <div className="row  d-flex justify-content-center align-items-center">
+                <h1 className="hero-title p-4">A little more about your roof...</h1>
+                <p className="hero-description">
+                  Number of ...
+                </p>
+                <div style={{ height: "200px", width: "100%" }}>
+                  <div className="row">
+                    <div className="col-md-3 col-sm-6 col-6">
+                      <div className="form-group">
+                        <label>Storeys</label>
+                        <select
+                          className="form-control"
+                          value={numberOfStories}
+                          onChange={(e) => setNumberOfStories(e.target.value)}
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-md-3 col-sm-6 col-6">
+                      <div className="form-group">
+                        <label>Skylights</label>
+                        <input
+                          type="number"
+                          min="0"
+                          className="form-control"
+                          value={numberOfSkylights}
+                          onChange={(e) => setNumberOfSkylights(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-3 col-sm-6 col-6">
+                      <div className="form-group">
+                        <label>Ridge Vents</label>
+                        <input
+                          type="number"
+                          min="0"
+                          className="form-control"
+                          value={numberOfRidgeVents}
+                          onChange={(e) => setNumberOfRidgeVents(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-3 col-sm-6 col-6">
+                      <div className="form-group">
+                        <label>Dormers</label>
+                        <input
+                          type="number"
+                          min="0"
+                          className="form-control"
+                          value={numberOfDormers}
+                          onChange={(e) => setNumberOfDormers(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+
+          </form>
+
+          {step === 5 && (
+            <div className="row  d-flex justify-content-center align-items-center">
+              <h1 className="hero-title p-4">Finally...</h1>
+              <p className="hero-description">
+                Hit the button to calculate your estimate
+              </p>
+              <div style={{ height: "200px", width: "100%" }}>
+                <button className="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleSubmit}>
+                  Calculate Roofing Estimate
+                </button>
+              </div>
             </div>
           )}
 
+          {step === 1 && (
+            <button className="btn btn-lg btn-secondary" onClick={onBackClick}>
+              <FontAwesomeIcon icon={faLeftLong} />
+            </button>
+          )}
 
-        </form>
+          {step > 1 && (
+            <button className="btn btn-lg btn-secondary mx-2" onClick={prevStep}>
+              <FontAwesomeIcon icon={faLeftLong} />
+            </button>
+          )}
+          {step < 5 && (
+            <button className="btn btn-lg btn-primary mx-2" onClick={nextStep}>
+              <FontAwesomeIcon icon={faRightLong} />
+            </button>
+          )
+          }
+          {/* Conditionally render the popup */}
+        </div>
+      </div>
 
-        {step === 5 && (
-           <div className="row  d-flex justify-content-center align-items-center">
-           <h1 className="hero-title p-4">Finally...</h1>
-           <p className="hero-description">
-             Hit the button to calculate your estimate
-           </p>
-           <div style={{ height: "400px", width: "100%" }}>
-          <button className="btn btn-lg btn-primary" onClick={calculateRoofingCost}>
-            Calculate Roofing Estimate
-          </button>
-          </div>
-          </div>
-        )}
 
-        {step === 1 && (
-          <button className="btn btn-lg btn-secondary" onClick={onBackClick}>
-            <FontAwesomeIcon icon={faLeftLong} />
-          </button>
-        )}
-
-        {step > 1 && (
-          <button className="btn btn-lg btn-secondary mx-2" onClick={prevStep}>
-            <FontAwesomeIcon icon={faLeftLong} />
-          </button>
-        )}
-        {step < 5 && (
-          <button className="btn btn-lg btn-primary mx-2" onClick={nextStep}>
-            <FontAwesomeIcon icon={faRightLong} />
-          </button>
-        )
-        }
-        {/* Conditionally render the popup */}
-        {showPopup && (
-          <RangePopup
-            isOpen={showPopup}
-            onRequestClose={() => setShowPopup(false)}
-            lowerRange={lowerRange}
-            upperRange={upperRange}
-          />
-        )}
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Roof Estimate</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {/* <h2>Your Estimated Roof Cost:</h2> */}
+        <p>The total square footage of your roof is approximately <strong>{Math.round(squareFootArea)} square feet</strong>.</p>
+        <p>Based on the provided information, your estimated cost for a new roof falls within the range of <strong>${lowerRange} to ${upperRange}</strong>.</p>
+        {/* <h2>Your Total Square Footage:</h2> */}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        {/* <button type="button" class="btn btn-primary">Save Changes</button> */}
       </div>
     </div>
+  </div>
+</div>
+
+      
+    </Fragment>
   );
 }
 

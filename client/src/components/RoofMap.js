@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Alert } from 'react-bootstrap';
 
 import {
-  faMagnifyingGlass, faRightLong
+  faMagnifyingGlass, faRightLong, faCheckCircle
 } from '@fortawesome/free-solid-svg-icons';
 import RoofingCalculator from "../components/RoofingCalculator";
 import "../styles/RoofMap.scss";
@@ -26,6 +26,8 @@ function RoofMap() {
   const [currentStep, setCurrentStep] = useState("roofMap");
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
 
   const handleNextClick = async () => {
@@ -108,6 +110,8 @@ function RoofMap() {
         setSquareFootArea(area);
         setCurrentStep("roofingCalculator");
         console.log(area)
+        setSuccess("Data fetched successfully.");
+        setShowSuccess(true); 
       } catch (error) {
         console.error('Error fetching square foot area:', error);
         setError('Data not available for the selected location. Please try another place.');
@@ -135,12 +139,12 @@ function RoofMap() {
     <div>
       {currentStep === "roofMap" && (
         <div className="container mb-5">
-        
+
           <div className="row height d-flex justify-content-center align-items-center">
-          <h1 className="hero-title p-4">Calculate your Roofing Estimate</h1>
-          <p className="hero-description">
-          Type in your address and select your roof on the map
-          </p>
+            <h1 className="hero-title p-4">Calculate your Roofing Estimate</h1>
+            <p className="hero-description">
+              Type in your address and select your roof on the map
+            </p>
 
             <div className="col-md-6">
 
@@ -196,18 +200,21 @@ function RoofMap() {
           </div>
           {isDataAvailable &&
             <button className="btn btn-primary btn-lg" onClick={handleNext} >
-             <FontAwesomeIcon icon={faRightLong} />
+              <FontAwesomeIcon icon={faRightLong} />
             </button>
           }
 
-<Alert variant="danger" show={showError && currentStep ==="roofMap"} onClose={() => setShowError(false)} dismissible>
-        {error}
-      </Alert>
+          <Alert variant="danger" show={showError && currentStep === "roofMap"} onClose={() => setShowError(false)} dismissible>
+            {error}
+          </Alert>
+          <Alert variant="success" show={showSuccess && currentStep === "roofMap"} onClose={() => setShowSuccess(false)} dismissible>
+            <FontAwesomeIcon icon={faCheckCircle} /> {success}
+          </Alert>
         </div>
       )}
 
       {currentStep === "roofingCalculator" && (
-        <RoofingCalculator onBackClick={handleBackClick}
+        <RoofingCalculator onBackClick={handleBackClick} squareFootArea={squareFootArea}
         />
       )}
       {/* Display the error using the Alert component */}
