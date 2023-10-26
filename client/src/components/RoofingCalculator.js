@@ -1,9 +1,9 @@
-import React, { useState,useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import "../styles/RoofingCalculator.scss";
 import RangePopup from ".././RangePopup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-   faRightLong, faLeftLong
+  faRightLong, faLeftLong
 } from '@fortawesome/free-solid-svg-icons';
 
 function RoofingCalculator({ onBackClick }) {
@@ -23,7 +23,7 @@ function RoofingCalculator({ onBackClick }) {
 
 
   const nextStep = () => {
-    if (step < 4) {
+    if (step < 5) {
       setStep(step + 1);
     }
   };
@@ -170,11 +170,8 @@ function RoofingCalculator({ onBackClick }) {
 
   return (
     <div id="roofing">
+
       <div className="roofing-calculator">
-        {/* <h2 className="mb-4">Step 2: Fill this Form</h2> */}
-    
-
-
         <form onSubmit={handleSubmit}>
           {/* <div className="form-group">
           <label>Total Square Footage:</label>
@@ -189,88 +186,97 @@ function RoofingCalculator({ onBackClick }) {
         </div> */}
 
           {step === 1 && (
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Roofing Material</label>
-                  <select
-                    className="form-control"
-                    value={roofingMaterial}
-                    onChange={(e) => {
-                      setRoofingMaterial(e.target.value);
-                      updateMaterialSubType(e.target.value);
-                    }}
-                  >
-                    <option value="shingles">Shingles</option>
-                    <option value="tiles">Tiles</option>
-                    <option value="metal">Metal</option>
-                    <option value="fiberglass">Fiberglass</option>
-                    <option value="fibercement">Fiber Cement</option>
-                  </select>
+            <div className="row  d-flex justify-content-center align-items-center">
+              <h1 className="hero-title p-4">What roofing material do you prefer?</h1>
+              <p className="hero-description">
+                Select the material of your choice
+              </p>
+              <div style={{ height: "400px", width: "100%" }}>
+                <div className="row">
 
-                </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Roofing Material</label>
+                      <select
+                        className="form-control"
+                        value={roofingMaterial}
+                        onChange={(e) => {
+                          setRoofingMaterial(e.target.value);
+                          updateMaterialSubType(e.target.value);
+                        }}
+                      >
+                        <option value="shingles">Shingles</option>
+                        <option value="tiles">Tiles</option>
+                        <option value="metal">Metal</option>
+                        <option value="fiberglass">Fiberglass</option>
+                        <option value="fibercement">Fiber Cement</option>
+                      </select>
 
-              </div>
+                    </div>
+
+                  </div>
 
 
 
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Material Sub Type</label>
-                  <select
-                    className="form-control"
-                    value={materialSubType}
-                    onChange={(e) => setMaterialSubType(e.target.value)}
-                  >
-                    {roofingMaterial === "shingles" && (
-                      <>
-                        <option value="3-tab">3-Tab Shingle</option>
-                        <option value="aluminium">Aluminium Shingle</option>
-                        <option value="architectural">
-                          Architectural Shingle
-                        </option>
-                        <option value="asphalt">Asphalt Shingle</option>
-                        <option value="metal-shingle">Metal Shingle</option>
-                        <option value="synthetic-comp">
-                          Synthetic Comp Shingle
-                        </option>
-                      </>
-                    )}
-                    {roofingMaterial === "tiles" && (
-                      <>
-                        <option value="concrete">Concrete</option>
-                        <option value="clay">Clay</option>
-                        <option value="glazed">Glazed</option>
-                        <option value="slate">Slate</option>
-                        <option value="steel">Steel</option>
-                      </>
-                    )}
-                    {roofingMaterial === "metal" && (
-                      <>
-                        <option value="aluminium">Aluminium Shingle</option>
-                        <option value="copper-panel">Copper Panel</option>
-                        <option value="corrugated">Corrugated</option>
-                        <option value="corrugated-aluminium">
-                          Corrugated Aluminium
-                        </option>
-                        <option value="ribbed">Ribbed</option>
-                        <option value="standard">Standard</option>
-                        <option value="steel-metal">Steel</option>
-                      </>
-                    )}
-                    {roofingMaterial === "fiberglass" && (
-                      <>
-                        <option value="corrugated">Corrugated</option>
-                      </>
-                    )}
-                    {roofingMaterial === "fibercement" && (
-                      <>
-                        <option value="corrugated">Corrugated</option>
-                        <option value="shake">Shake</option>
-                        <option value="slate-fibercement">Slate</option>
-                      </>
-                    )}
-                  </select>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Material Sub Type</label>
+                      <select
+                        className="form-control"
+                        value={materialSubType}
+                        onChange={(e) => setMaterialSubType(e.target.value)}
+                      >
+                        {roofingMaterial === "shingles" && (
+                          <>
+                            <option value="3-tab">3-Tab Shingle</option>
+                            <option value="aluminium">Aluminium Shingle</option>
+                            <option value="architectural">
+                              Architectural Shingle
+                            </option>
+                            <option value="asphalt">Asphalt Shingle</option>
+                            <option value="metal-shingle">Metal Shingle</option>
+                            <option value="synthetic-comp">
+                              Synthetic Comp Shingle
+                            </option>
+                          </>
+                        )}
+                        {roofingMaterial === "tiles" && (
+                          <>
+                            <option value="concrete">Concrete</option>
+                            <option value="clay">Clay</option>
+                            <option value="glazed">Glazed</option>
+                            <option value="slate">Slate</option>
+                            <option value="steel">Steel</option>
+                          </>
+                        )}
+                        {roofingMaterial === "metal" && (
+                          <>
+                            <option value="aluminium">Aluminium Shingle</option>
+                            <option value="copper-panel">Copper Panel</option>
+                            <option value="corrugated">Corrugated</option>
+                            <option value="corrugated-aluminium">
+                              Corrugated Aluminium
+                            </option>
+                            <option value="ribbed">Ribbed</option>
+                            <option value="standard">Standard</option>
+                            <option value="steel-metal">Steel</option>
+                          </>
+                        )}
+                        {roofingMaterial === "fiberglass" && (
+                          <>
+                            <option value="corrugated">Corrugated</option>
+                          </>
+                        )}
+                        {roofingMaterial === "fibercement" && (
+                          <>
+                            <option value="corrugated">Corrugated</option>
+                            <option value="shake">Shake</option>
+                            <option value="slate-fibercement">Slate</option>
+                          </>
+                        )}
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -278,130 +284,166 @@ function RoofingCalculator({ onBackClick }) {
 
           {step === 2 && (
 
-
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Do You Need New Gutters?</label>
-                  <div>
-                    <label className="radio-inline">
-                      <input
-                        type="radio"
-                        value="yes"
-                        checked={needNewGutters === true}
-                        onChange={() => setNeedNewGutters(true)}
-                      />
-                      Yes
-                    </label>
-                    <label className="radio-inline">
-                      <input
-                        type="radio"
-                        value="no"
-                        checked={needNewGutters === false}
-                        onChange={() => setNeedNewGutters(false)}
-                      />
-                      No
-                    </label>
+            <div className="row  d-flex justify-content-center align-items-center">
+              <h1 className="hero-title p-4">Do You Need New Gutters?</h1>
+              <p className="hero-description">
+                Select your preference
+              </p>
+              <div style={{ height: "400px", width: "100%" }}>
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group text-center">
+                      {/* <label>Do You Need New Gutters?</label> */}
+                      <div>
+                        <label className="radio-inline">
+                          <input
+                            type="radio"
+                            value="yes"
+                            checked={needNewGutters === true}
+                            onChange={() => setNeedNewGutters(true)}
+                          />
+                          Yes
+                        </label>
+                        <label className="radio-inline">
+                          <input
+                            type="radio"
+                            value="no"
+                            checked={needNewGutters === false}
+                            onChange={() => setNeedNewGutters(false)}
+                          />
+                          No
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Tear Off, Removal, and Dumping of Old Roof?</label>
-                  <select
-                    className="form-control"
-                    value={tearOffLayers}
-                    onChange={(e) => setTearOffLayers(e.target.value)}
-                  >
-                    <option value="">Select Option</option>
-                    <option value="yes1">Yes, 1 Layer</option>
-                    <option value="yes2">Yes, 2 Layers</option>
-                    <option value="no">No</option>
-                  </select>
                 </div>
               </div>
             </div>
           )}
-
           {step === 3 && (
 
-            <div className="row">
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Storeys</label>
-                  <select
-                    className="form-control"
-                    value={numberOfStories}
-                    onChange={(e) => setNumberOfStories(e.target.value)}
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Skylights</label>
-                  <input
-                    type="number"
-                    min="0"
-                    className="form-control"
-                    value={numberOfSkylights}
-                    onChange={(e) => setNumberOfSkylights(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Ridge Vents</label>
-                  <input
-                    type="number"
-                    min="0"
-                    className="form-control"
-                    value={numberOfRidgeVents}
-                    onChange={(e) => setNumberOfRidgeVents(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Dormers</label>
-                  <input
-                    type="number"
-                    min="0"
-                    className="form-control"
-                    value={numberOfDormers}
-                    onChange={(e) => setNumberOfDormers(e.target.value)}
-                  />
+            <div className="row  d-flex justify-content-center align-items-center">
+              <h1 className="hero-title p-4">Tear Off, Removal, and Dumping of Old Roof?</h1>
+              <p className="hero-description">
+                We got that covered too!
+              </p>
+              <div style={{ height: "400px", width: "100%" }}>
+                <div className="row">
+                 
+
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <select
+                        className="form-control"
+                        value={tearOffLayers}
+                        onChange={(e) => setTearOffLayers(e.target.value)}
+                      >
+                        <option value="">Select Option</option>
+                        <option value="yes1">Yes, 1 Layer</option>
+                        <option value="yes2">Yes, 2 Layers</option>
+                        <option value="no">No</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
           {step === 4 && (
-            <button className="btn btn-lg btn-primary" onClick={calculateRoofingCost}>
-              Calculate Roofing Estimate
-            </button>
+
+            <div className="row  d-flex justify-content-center align-items-center">
+              <h1 className="hero-title p-4">A little more about your roof...</h1>
+              <p className="hero-description">
+                Number of ...
+              </p>
+              <div style={{ height: "400px", width: "100%" }}>
+                <div className="row">
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Storeys</label>
+                      <select
+                        className="form-control"
+                        value={numberOfStories}
+                        onChange={(e) => setNumberOfStories(e.target.value)}
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Skylights</label>
+                      <input
+                        type="number"
+                        min="0"
+                        className="form-control"
+                        value={numberOfSkylights}
+                        onChange={(e) => setNumberOfSkylights(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Ridge Vents</label>
+                      <input
+                        type="number"
+                        min="0"
+                        className="form-control"
+                        value={numberOfRidgeVents}
+                        onChange={(e) => setNumberOfRidgeVents(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Dormers</label>
+                      <input
+                        type="number"
+                        min="0"
+                        className="form-control"
+                        value={numberOfDormers}
+                        onChange={(e) => setNumberOfDormers(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
 
 
         </form>
 
+        {step === 5 && (
+           <div className="row  d-flex justify-content-center align-items-center">
+           <h1 className="hero-title p-4">Finally...</h1>
+           <p className="hero-description">
+             Hit the button to calculate your estimate
+           </p>
+           <div style={{ height: "400px", width: "100%" }}>
+          <button className="btn btn-lg btn-primary" onClick={calculateRoofingCost}>
+            Calculate Roofing Estimate
+          </button>
+          </div>
+          </div>
+        )}
+
         {step === 1 && (
           <button className="btn btn-lg btn-secondary" onClick={onBackClick}>
-             <FontAwesomeIcon icon={faLeftLong} />
+            <FontAwesomeIcon icon={faLeftLong} />
           </button>
         )}
 
         {step > 1 && (
           <button className="btn btn-lg btn-secondary mx-2" onClick={prevStep}>
-             <FontAwesomeIcon icon={faLeftLong} />
+            <FontAwesomeIcon icon={faLeftLong} />
           </button>
         )}
-        {step < 4 && (
+        {step < 5 && (
           <button className="btn btn-lg btn-primary mx-2" onClick={nextStep}>
-             <FontAwesomeIcon icon={faRightLong} />
+            <FontAwesomeIcon icon={faRightLong} />
           </button>
         )
         }

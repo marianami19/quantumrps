@@ -200,7 +200,9 @@ function RoofMap() {
             </button>
           }
 
-
+<Alert variant="danger" show={showError && currentStep ==="roofMap"} onClose={() => setShowError(false)} dismissible>
+        {error}
+      </Alert>
         </div>
       )}
 
@@ -209,9 +211,7 @@ function RoofMap() {
         />
       )}
       {/* Display the error using the Alert component */}
-      <Alert variant="danger" show={showError && currentStep ==="roofMap"} onClose={() => setShowError(false)} dismissible>
-        {error}
-      </Alert>
+
 
     </div>
   );

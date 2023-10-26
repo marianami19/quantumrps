@@ -1,5 +1,6 @@
 .roofing-calculator {
   padding: 5em;
+  // height: 100vh;
   h2 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -17,10 +18,10 @@
       border: 1px solid #dcdcdc;
       border-radius: 3px;
       background-color: #fff;
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-      }
+    //   &:focus {
+    //     outline: none;
+    //     box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    //   }
     }
   }
 
