@@ -3,17 +3,14 @@ import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import GoogleMapReact from "google-map-react";
 import Marker from "./Marker"
-import { Icon } from "@iconify/react";
-import locationIcon from "@iconify/icons-mdi/map-marker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
 import { Alert } from 'react-bootstrap';
-
 import {
   faMagnifyingGlass, faRightLong, faCheckCircle
 } from '@fortawesome/free-solid-svg-icons';
 import RoofingCalculator from "../components/RoofingCalculator";
 import "../styles/RoofMap.scss";
+
 function RoofMap() {
   const [address, setAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -50,7 +47,7 @@ function RoofMap() {
     const fetchSuggestions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3306/autocomplete?input=${address}`
+          `https://quantrps.onrender.com/autocomplete?input=${address}`
         );
         setSuggestions(response.data.predictions);
       } catch (error) {
@@ -81,7 +78,7 @@ function RoofMap() {
 
     try {
       const geoResponse = await axios.get(
-        `http://localhost:3306/geocode?place_id=${selected.place_id}`
+        `https://quantrps.onrender.com/geocode?place_id=${selected.place_id}`
       );
 
       const location = geoResponse.data.location;
@@ -102,7 +99,7 @@ function RoofMap() {
       try {
         // Send a request to the backend endpoint to fetch solar data
         const solarResponse = await axios.get(
-          `http://localhost:3306/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+          `https://quantrps.onrender.com/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
         );
 
         // Extract the square foot area from the response
@@ -136,7 +133,7 @@ function RoofMap() {
 
   return (
 
-    <div>
+    <div id="roofing">
       {currentStep === "roofMap" && (
         <div className="container mb-5">
 
