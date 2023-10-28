@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Axios from "axios"; // Import Axios for making HTTP requests
 import "../styles/UserForm.scss";
+import { Alert } from 'react-bootstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+   faCheckCircle
+} from '@fortawesome/free-solid-svg-icons';
 
 function UserForm() {
   // Initialize state to store form data
@@ -10,6 +15,10 @@ function UserForm() {
     phone: "",
     squareFootage: "",
   });
+  const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -25,18 +34,36 @@ function UserForm() {
       if (response.status === 200) {
         console.log("Form submitted successfully!");
         // Reset the form fields after submission (if needed)
+        setSuccess("Form submitted successfully!");
+        setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 3000);
         setFormData({
           name: "",
           email: "",
           phone: "",
           squareFootage: "",
         });
+
       } else {
         console.error("Form submission failed. Status:", response.status);
         // Handle the failure (e.g., display an error message to the user)
+        setError('Error submitting form');
+        setShowError(true);
+        // Automatically hide the error alert after 3 seconds
+        setTimeout(() => {
+          setShowError(false);
+        }, 3000);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setError('Error submitting form');
+      setShowError(true);
+      // Automatically hide the error alert after 3 seconds
+      setTimeout(() => {
+        setShowError(false);
+      }, 3000);
       // Handle any errors (e.g., display an error message to the user)
     }
   };
@@ -76,6 +103,7 @@ function UserForm() {
                       className="form-control"
                       value={formData.name}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -86,6 +114,7 @@ function UserForm() {
                       className="form-control"
                       value={formData.email}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -96,6 +125,7 @@ function UserForm() {
                       className="form-control"
                       value={formData.phone}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -106,20 +136,31 @@ function UserForm() {
                       className="form-control"
                       value={formData.squareFootage}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
+                  <div style={{height: '50px'}}>
+                  <Alert variant="danger" show={showError} onClose={() => setShowError(false)} dismissible>
+                  {error}
+                </Alert>
+                <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
+                  <FontAwesomeIcon icon={faCheckCircle} /> {success}
+                </Alert>
+                </div>
                   <button
                     type="submit"
-                    className="btn btn-lg btn-primary text-center"
+                    className="btn btn-lg btn-primary text-center mt-2"
                   >
                     Submit
                   </button>
                 </form>
+            
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 }

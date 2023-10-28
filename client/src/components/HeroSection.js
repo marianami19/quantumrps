@@ -1,39 +1,43 @@
 import React from "react";
 import "../styles/HeroSection.scss";
+import roof from '../assets/images/roof.jpg';
 
 function HeroSection() {
-  const scrollToSteps = () => {
-    const stepsContainer = document.getElementById("roofing");
-    if (stepsContainer) {
-      stepsContainer.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <section className="hero-section">
-      <div className="container h-100">
-        <div className="row align-items-center h-100">
-          <div className="col-md-6">
-            <h1 className="hero-title">Welcome to Quantum Roofing</h1>
-            <p className="hero-description">
-              Providing professional roofing services.
-            </p>
-            <button className="btn btn-primary btn-lg" onClick={scrollToSteps}>
-              Get Started
-            </button>
-          </div>
-          <div className="col-md-6">
-            <div className="image-container">
-              <img
-                src={require(`../assets/images/mockup.jpg`)} // Replace with your image source
-                alt="Roofing"
-                className="img-fluid image-hover"
-              />
+    <div className="container home-screen">
+      <div className="row">
+        <div className="col-md-7">
+          <div className="text-content">
+            <div className="text-group">
+              <div className="text-line">
+                <p className="line">Your Roof.</p>
+                <p className="line">Your Rules.</p>
+                <p className="line">Quantum Roofing.</p>
+              </div>
+              <div className="text-line">
+                <p className="description">At Quantum Roofing and Professional Services, we believe that your roofing project should be straightforward, stress-free, and cost-effective.</p>
+                <p className="description">Join us in our mission to transform the industry and experience the difference today.</p>
+              </div>
+              <div className="calculate-button">
+              <button type="button" class="btn btn-outline-dark">Calculate Your Estimate</button>
+              </div>
             </div>
           </div>
         </div>
+        <div className="col-md-5 center-block">
+          {/* <div className="image-container"> */}
+            <img
+              src={roof}
+              alt="Roofing"
+              className='w-100 img-responsive'
+            />
+          {/* </div> */}
+        </div>
       </div>
-    </section>
+
+      {/* ... Previous content ... */}
+   
+    </div>
   );
 }
 

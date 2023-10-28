@@ -1,64 +1,79 @@
-.hero-section {
-  position: relative; /* Needed for the triangle */
+.home-screen {
+  // height: 100vh;
+  font-family: "Century Gothic";
 
-  &::before {
-    /* Create a triangle at the bottom with white color */
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 50vw solid transparent;
-    border-right: 50vw solid transparent;
-    border-bottom: 20vh solid white; /* Adjust the triangle height as needed */
-    z-index: 1; /* Place it above the navy blue background */
-  }
+  .row{
+    margin: 80px 0;
+  .text-content {
+    padding: 20px;
 
-  background-color: #001f3f; /* Navy Blue Background Color */
-  color: #fff; /* White Text Color */
-  height: 100vh; /* Full viewport height */
-  overflow: hidden;
-  .container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    .text-group {
+      .text-line {
+        font-family: "Century Gothic";
+        font-size: 3.8rem;
+        line-height: 63px;
+        letter-spacing: 1px;
+        text-align: left;
 
-  .hero-title {
-    font-size: 36px;
-    font-weight: bold;
-  }
+        .line {
+          font-weight: 700;
+          color: #00529C;
 
-  .hero-description {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
+          margin-bottom: 3rem;
 
-  @media (max-width: 768px) {
-    &::before {
-      /* Hide the triangle on screens with a maximum width of 768px (mobile devices) */
-      display: none;
+          &:not(:last-child) {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+
+      .description {
+        font-size: 1.25rem;
+        line-height: 32px;
+        letter-spacing: 0em;
+        text-align: left;
+        font-weight: 700;
+        color: #273441;
+
+        &:not(:last-child) {
+          margin-bottom: 1.7rem;
+    font-weight: 200;
+
+        }
+      }
+    }
+
+    .calculate-button {
+      margin-top: 3.2rem;
+
+      button {
+        border-width: medium;
+        padding: 18px 28px;
+        float: left;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 0;
+        border-color: #273441;
+      }
     }
   }
 
   .image-container {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
+    text-align: center;
 
-    .img-fluid {
-      max-width: 100%;
-      height: auto;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .image-hover {
-      &:hover {
-        transform: scale(1.1); /* Scale image on hover */
-      }
+    img {
+      margin-top: 20px;
     }
   }
+
+}
+
+
+
+  /* HomeScreen.scss */
+
+  /* Previous styles for the HomeScreen component */
+
+
+
 }

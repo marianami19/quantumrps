@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/images/DP.jpg"; // Import your logo image
+import logo from "../assets/images/logo.png"; // Import your logo image
 import {Link } from 'react-router-dom';
 import "../styles/Header.scss";
 
@@ -9,7 +9,7 @@ function Header() {
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           {/* <a className="navbar-brand" href="#"> */}
-          <img src={logo} alt="Logo" height={40} width={40} />
+          <img src={logo} alt="Logo" height={40}  />
           {/* </a> */}
           <button
             className="navbar-toggler"
@@ -29,14 +29,12 @@ function Header() {
             <ul className="navbar-nav ml-auto">
              
               <li className="nav-item">
-              <Link   className="nav-link" to="/">Home</Link>
+              <Link   className="nav-link" to="/">HOME</Link>
               </li>
               <li className="nav-item">
-              <Link   className="nav-link" to="/about-us">About</Link>
+              <Link   className="nav-link" to="/about-us">ABOUT</Link>
               </li>
-              <li className="nav-item">
-              <Link   className="nav-link" to="/contact-us">Contact</Link>
-              </li>
+            
              
             </ul>
           </div>

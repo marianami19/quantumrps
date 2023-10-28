@@ -1,0 +1,44 @@
+  /* What Sets Us Apart Section */
+  .what-sets-us-apart {
+    background-color: #273441;
+    
+    .section-title {
+      font-family: 'Century Gothic';
+      font-weight: 700;
+      font-size: 40px;
+      color: #FFFFFF;
+      margin: 72px 0;
+      text-align: center;
+    }
+
+    .card {
+      width: 360px;
+      height: 360px;
+      background-color: #E3E8ED;
+      border: none;
+      margin: 10px;
+      border-radius: 0;
+      text-align: left;
+      padding: 15px;
+    }
+
+    .flex-margin {
+      margin-bottom: 72px;
+    }
+
+    .card-title {
+        font-family: 'Century Gothic';
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 5rem;
+        color: #000000;
+    }
+
+    .card-text {
+      font-family: 'Century Gothic';
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #000000;
+    }
+  }
