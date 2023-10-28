@@ -5,14 +5,14 @@ const HomeInfo = () => {
     return (
         <div className="bg-dark m-5">
              <div className='bg-light my-5 text-dark p-4 '>
-                <p  className="p-5">
+                <p  className="py-5">
                     At Quantum Roofing and Professional Services, we believe that your roofing project should be straightforward, stress-free, and cost-effective. Join us in our mission to transform the industry and experience the difference today.
                 </p>
 
                 <p className="tagline"><em>Your Roof. Your Rules. Quantum Roofing.</em></p>
             </div>
             <h1 className="text-primary">What Sets Us Apart</h1>
-            <div className="p-5">
+            <div className="py-5">
                 <div className="">
                     <div className='acard  text-dark'>
                         <h5 className="text-primary">Affordable Options</h5>
