@@ -14,7 +14,6 @@ import "../styles/RoofMap.scss";
 function RoofMap() {
   const [address, setAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [coordinates, setCoordinates] = useState({lat:  39.8283,  lng: -98.5795});  // Default center coordinates for the map (center of the US)
   const [map, setMap] = useState(null); // Store the map instance
@@ -26,14 +25,6 @@ function RoofMap() {
   const [success, setSuccess] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-
-  const handleNextClick = async () => {
-    if (currentStep === "roofMap") {
-      // Transition to the Roofing Calculator step
-      setCurrentStep("roofingCalculator");
-      // Continue with your existing logic to fetch solar data
-    }
-  };
 
   const handleBackClick = () => {
     if (currentStep === "roofingCalculator") {
@@ -72,7 +63,6 @@ function RoofMap() {
   };
 
   const handleSelectAddress = async (selected) => {
-    setSelectedAddress(selected.description);
     setAddress(selected.description);
     setShowSuggestions(false);
 

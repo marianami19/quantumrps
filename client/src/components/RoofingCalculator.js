@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import "../styles/RoofingCalculator.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {

@@ -26,7 +26,7 @@ function HeroSection() {
             <div className="image-container">
               <img
                 src={require(`../assets/images/mockup.jpg`)} // Replace with your image source
-                alt="Roofing Image"
+                alt="Roofing"
                 className="img-fluid image-hover"
               />
             </div>
