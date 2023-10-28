@@ -419,9 +419,9 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
                 </button>
               <div style={{ height: "200px", width: "100%" }}>
                 { showResults && (
-                  <div>
-                    <p>The total square footage of your roof is approximately <strong>{Math.round(squareFootArea)} square feet</strong>.</p>
-                    <p>Your estimated cost for a new roof falls within the range of <strong>${lowerRange} to ${upperRange}</strong>.</p>
+                  <div className="p-4">
+                    <p>The total square footage of your roof is approximately <strong style={{fontSize:'larger'}}>{Math.round(squareFootArea)} square feet</strong>.</p>
+                    <p>Your estimated cost for a new roof falls within the range of <strong><span style={{fontSize:'larger'}}>${lowerRange}</span> to <span style={{fontSize:'larger'}}>${upperRange}</span></strong>.</p>
                   </div>
                 )}
               </div>

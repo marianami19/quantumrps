@@ -15,7 +15,7 @@ function RoofMap() {
   const [address, setAddress] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(true);
-  const [coordinates, setCoordinates] = useState({lat:  39.8283,  lng: -98.5795});  // Default center coordinates for the map (center of the US)
+  const [coordinates, setCoordinates] = useState({ lat: 39.8283, lng: -98.5795 });  // Default center coordinates for the map (center of the US)
   const [map, setMap] = useState(null); // Store the map instance
   const [isDataAvailable, setIsDataAvailable] = useState(false);
   const [squareFootArea, setSquareFootArea] = useState(null);
@@ -45,6 +45,10 @@ function RoofMap() {
         console.error("Error fetching suggestions:", error);
         setError('Error fetching data. Please try again.');
         setShowError(true);
+        // Automatically hide the error alert after 3 seconds
+        setTimeout(() => {
+          setShowError(false);
+        }, 3000);
       }
     };
 
@@ -78,6 +82,10 @@ function RoofMap() {
       console.error("Error fetching coordinates:", error);
       setError('Error fetching data. Please try again.');
       setShowError(true);
+      // Automatically hide the error alert after 3 seconds
+      setTimeout(() => {
+        setShowError(false);
+      }, 3000);
     }
   };
 
@@ -98,11 +106,18 @@ function RoofMap() {
         setCurrentStep("roofingCalculator");
         console.log(area)
         setSuccess("Data fetched successfully.");
-        setShowSuccess(true); 
+        setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 3000);
       } catch (error) {
         console.error('Error fetching square foot area:', error);
         setError('Data not available for the selected location. Please try another place.');
         setShowError(true);
+        // Automatically hide the error alert after 3 seconds
+        setTimeout(() => {
+          setShowError(false);
+        }, 3000);
       }
     }
   };
@@ -174,7 +189,7 @@ function RoofMap() {
                 onGoogleApiLoaded={({ map }) => setMap(map)}
                 onClick={handleMapClick}
                 options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
-              zoom={14}
+                zoom={14}
               >
                 <Marker
                   text="My home"
@@ -185,18 +200,18 @@ function RoofMap() {
               </GoogleMapReact>}
             </div>
           </div>
+
+          <Alert  variant="danger" show={showError && currentStep === "roofMap"} onClose={() => setShowError(false)} dismissible>
+            {error}
+          </Alert>
+          <Alert  variant="success" show={showSuccess && currentStep === "roofMap"} onClose={() => setShowSuccess(false)} dismissible>
+            <FontAwesomeIcon icon={faCheckCircle} /> {success}
+          </Alert>
           {isDataAvailable &&
             <button className="btn btn-primary btn-lg" onClick={handleNext} >
               <FontAwesomeIcon icon={faRightLong} />
             </button>
           }
-
-          <Alert variant="danger" show={showError && currentStep === "roofMap"} onClose={() => setShowError(false)} dismissible>
-            {error}
-          </Alert>
-          <Alert variant="success" show={showSuccess && currentStep === "roofMap"} onClose={() => setShowSuccess(false)} dismissible>
-            <FontAwesomeIcon icon={faCheckCircle} /> {success}
-          </Alert>
         </div>
       )}
 
