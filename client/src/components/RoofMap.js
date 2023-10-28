@@ -16,7 +16,7 @@ function RoofMap() {
   const [suggestions, setSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(true);
-  const [coordinates, setCoordinates] = useState(null);
+  const [coordinates, setCoordinates] = useState({lat:  39.8283,  lng: -98.5795});  // Default center coordinates for the map (center of the US)
   const [map, setMap] = useState(null); // Store the map instance
   const [isDataAvailable, setIsDataAvailable] = useState(false);
   const [squareFootArea, setSquareFootArea] = useState(null);
@@ -137,8 +137,8 @@ function RoofMap() {
       {currentStep === "roofMap" && (
         <div className="container mb-5">
 
-          <div className="row height d-flex justify-content-center align-items-center">
-            <h1 className="hero-title p-4">Calculate your Roofing Estimate</h1>
+          <div className="row height d-flex justify-content-center align-items-center ">
+            <h1 className="hero-title ">Calculate your Roofing Estimate</h1>
             <p className="hero-description">
               Type in your address and select your roof on the map
             </p>
@@ -180,11 +180,11 @@ function RoofMap() {
                   lat: coordinates.lat,
                   lng: coordinates.lng,
                 }}
-                defaultZoom={17}
+                defaultZoom={4}
                 onGoogleApiLoaded={({ map }) => setMap(map)}
                 onClick={handleMapClick}
                 options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
-              // zoom={10}
+              zoom={14}
               >
                 <Marker
                   text="My home"

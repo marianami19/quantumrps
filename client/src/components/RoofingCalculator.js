@@ -18,6 +18,7 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
   const [numberOfDormers, setNumberOfDormers] = useState(0);
   const [lowerRange, setLowerRange] = useState(0);
   const [upperRange, setUpperRange] = useState(0);
+  const [showResults, setShowResults] = useState(false);
 
 
   const nextStep = () => {
@@ -128,7 +129,7 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
 
     calculateRange(totalCost);
 
-
+    setShowResults(true);
   };
 
   // Function to calculate the lower and upper ranges
@@ -143,6 +144,7 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
     setLowerRange(lower);
     setUpperRange(upper);
   }
+
   // Function to update material subtype based on roofing material
   const updateMaterialSubType = (material) => {
     switch (material) {
@@ -173,11 +175,11 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
 
         <div className="roofing-calculator">
           <form onSubmit={handleSubmit}>
-   
+
 
             {step === 1 && (
               <div className="row  d-flex justify-content-center align-items-center">
-                <h1 className="hero-title p-4">What roofing material do you prefer?</h1>
+                <h1 className="hero-title">What roofing material do you prefer?</h1>
                 <p className="hero-description">
                   Select the material of your choice
                 </p>
@@ -275,7 +277,7 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
             {step === 2 && (
 
               <div className="row  d-flex justify-content-center align-items-center">
-                <h1 className="hero-title p-4">Do You Need New Gutters?</h1>
+                <h1 className="hero-title">Do You Need New Gutters?</h1>
                 <p className="hero-description">
                   Select your preference
                 </p>
@@ -313,7 +315,7 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
             {step === 3 && (
 
               <div className="row  d-flex justify-content-center align-items-center">
-                <h1 className="hero-title p-4">Tear Off, Removal, and Dumping of Old Roof?</h1>
+                <h1 className="hero-title">Tear Off, Removal, and Dumping of Old Roof?</h1>
                 <p className="hero-description">
                   We got that covered too!
                 </p>
@@ -343,7 +345,7 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
             {step === 4 && (
 
               <div className="row  d-flex justify-content-center align-items-center">
-                <h1 className="hero-title p-4">A little more about your roof...</h1>
+                <h1 className="hero-title">A little more about your roof...</h1>
                 <p className="hero-description">
                   Number of ...
                 </p>
@@ -407,15 +409,21 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
           </form>
 
           {step === 5 && (
-            <div className="row  d-flex justify-content-center align-items-center">
-              <h1 className="hero-title p-4">Finally...</h1>
+            <div className="">
+              <h1 className="hero-title">Finally...</h1>
               <p className="hero-description">
                 Hit the button to calculate your estimate
               </p>
-              <div style={{ height: "200px", width: "100%" }}>
-                <button className="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleSubmit}>
+                <button className="btn btn-lg btn-primary" onClick={handleSubmit}>
                   Calculate Roofing Estimate
                 </button>
+              <div style={{ height: "200px", width: "100%" }}>
+                { showResults && (
+                  <div>
+                    <p>The total square footage of your roof is approximately <strong>{Math.round(squareFootArea)} square feet</strong>.</p>
+                    <p>Your estimated cost for a new roof falls within the range of <strong>${lowerRange} to ${upperRange}</strong>.</p>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -442,28 +450,9 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
       </div>
 
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Your Roof Estimate</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {/* <h2>Your Estimated Roof Cost:</h2> */}
-        <p>The total square footage of your roof is approximately <strong>{Math.round(squareFootArea)} square feet</strong>.</p>
-        <p>Based on the provided information, your estimated cost for a new roof falls within the range of <strong>${lowerRange} to ${upperRange}</strong>.</p>
-        {/* <h2>Your Total Square Footage:</h2> */}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        {/* <button type="button" class="btn btn-primary">Save Changes</button> */}
-      </div>
-    </div>
-  </div>
-</div>
 
-      
+
+
     </Fragment>
   );
 }

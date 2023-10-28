@@ -1,6 +1,6 @@
 /* AboutUs.scss */
 
-.container-about {
+// .container-about {
     // margin-top: 30px;
     // color: #333; /* Default text color */
     // font-size: 1.1rem;
@@ -17,7 +17,7 @@
       list-style-type: disc;
       margin-left: 20px;
       li {
-        margin-bottom: 10px;
+        // margin-bottom: 10px;
       }
     }
   
@@ -32,8 +32,15 @@
 
     .abh100 {
       height: 90vh;
-      padding: 4rem;;
+      padding: 9em;;
     }
+
+    @media only screen and (min-device-width: 480px){
+      .abh100 {
+        padding: 4rem;;
+      }
+    }
+
 
     .acard {
       background-color: rgba(255, 255, 255, 0.9); /* Light background for cards */
@@ -48,5 +55,5 @@
         transform: translateY(-5px);
       }
     }
-  }
+  // }
   

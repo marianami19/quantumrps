@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/images/DP.jpg"; // Import your logo image
 import {Link } from 'react-router-dom';
+import "../styles/Header.scss";
 
 function Header() {
   return (
@@ -32,6 +33,9 @@ function Header() {
               </li>
               <li className="nav-item">
               <Link   className="nav-link" to="/about-us">About</Link>
+              </li>
+              <li className="nav-item">
+              <Link   className="nav-link" to="/contact-us">Contact</Link>
               </li>
              
             </ul>
