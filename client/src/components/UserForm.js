@@ -77,11 +77,11 @@ function UserForm() {
               Get in touch with us
             </h2>
             <p className="call-info mt-auto">
-              Fill in the form, or give us a call at <br/>
+              Fill in the form, or give us a call at <br />
               {/* <FontAwesomeIcon icon={faPhone} /> */}
               {/* <div className="d-flex"> */}
-                <img  className="phone-icon" src={phone} alt="phone" />
-                <span className="phone-number"><a href="tel:(239) 372-3757">(239) 372-3757</a></span>
+              <img className="phone-icon" src={phone} alt="phone" />
+              <span className="phone-number"><a href="tel:(239) 372-3757">(239) 372-3757</a></span>
               {/* </div> */}
             </p>
           </div>
@@ -142,12 +142,12 @@ function UserForm() {
                     <FontAwesomeIcon icon={faCheckCircle} /> {success}
                   </Alert>
                 </div>
-      
+
 
                 <div className="calculate-button text-center">
-              <button  type="submit" className="btn btn-outline-dark mt-2">SUBMIT</button>
-              <p>We'll get back to you soon!</p>
-              </div>
+                  <button type="submit" className="btn btn-outline-dark mt-2">SUBMIT</button>
+                  <p className="under-submit-text">We'll get back to you soon!</p>
+                </div>
               </form>
             </div>
           </div>

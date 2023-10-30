@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import RoofingCalculator from "../components/RoofingCalculator";
 import "../styles/RoofMap.scss";
+import next from "../assets/images/Next (Stroke).svg"
 
 function RoofMap() {
   const [address, setAddress] = useState("");
@@ -141,8 +142,76 @@ function RoofMap() {
     <div id="roofing">
       {currentStep === "roofMap" && (
         <div className="container mb-5">
+          <div className="row">
+            <div className="col-md-5">
+              <h2 className="heading">
+                Calculate your Roofing Estimate
+              </h2>
+              <h4 className="subheading">Type in your address and select your roof on the map</h4>
+              <div className="searchbar">
+                <input type="text" className="form-control form-input icon" placeholder="Enter an address..." value={address}
+                  onChange={handleAddressChange} />
+                {showSuggestions && suggestions.length > 0 && (
+                  <ul className="list-group">
+                    {suggestions.map((suggestion) => (
+                      <li
+                        key={suggestion.place_id}
+                        onClick={() => handleSelectAddress(suggestion)}
+                        className="list-group-item list-group-item-action"
+                      >
+                        {suggestion.description}
+                      </li>
+                    ))}
+                  </ul>
 
-          <div className="row height d-flex justify-content-center align-items-center ">
+                )}
+
+              </div>
+              <Alert variant="danger" show={showError && currentStep === "roofMap"} onClose={() => setShowError(false)} dismissible>
+                {error}
+              </Alert>
+              <Alert variant="success" show={showSuccess && currentStep === "roofMap"} onClose={() => setShowSuccess(false)} dismissible>
+                <FontAwesomeIcon icon={faCheckCircle} /> {success}
+              </Alert>
+              <div className="next-btn">
+                {isDataAvailable &&
+
+                  <div className="calculate-button text-center">
+                    <button type="submit" className="btn btn-outline-dark mt-2"  onClick={handleNext} >SUBMIT
+                    <img src={next} alt=">" className="m-auto"/>
+                    </button>
+                  </div>
+            
+                }
+            </div>
+          </div>
+          <div className="col-md-7">
+            <div style={{ height: "40vw", width: "40vw" }}>
+              {coordinates && coordinates.lat && coordinates.lng && <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ",
+                }}
+                defaultCenter={{
+                  lat: coordinates.lat,
+                  lng: coordinates.lng,
+                }}
+                defaultZoom={4}
+                onGoogleApiLoaded={({ map }) => setMap(map)}
+                onClick={handleMapClick}
+                options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+                zoom={14}
+              >
+                <Marker
+                  text="My home"
+                  lat={coordinates.lat}
+                  lng={coordinates.lng}
+                // onClick={() => map.setCenter({ lat: coordinates.lat + Math.random(), lng: coordinates.lng + Math.random() })}
+                />
+              </GoogleMapReact>}
+            </div>
+          </div>
+        </div>
+          {/* <div className="row height d-flex justify-content-center align-items-center ">
             <h1 className="hero-title ">Calculate your Roofing Estimate</h1>
             <p className="hero-description">
               Type in your address and select your roof on the map
@@ -201,28 +270,31 @@ function RoofMap() {
             </div>
           </div>
 
-          <Alert  variant="danger" show={showError && currentStep === "roofMap"} onClose={() => setShowError(false)} dismissible>
+          <Alert variant="danger" show={showError && currentStep === "roofMap"} onClose={() => setShowError(false)} dismissible>
             {error}
           </Alert>
-          <Alert  variant="success" show={showSuccess && currentStep === "roofMap"} onClose={() => setShowSuccess(false)} dismissible>
+          <Alert variant="success" show={showSuccess && currentStep === "roofMap"} onClose={() => setShowSuccess(false)} dismissible>
             <FontAwesomeIcon icon={faCheckCircle} /> {success}
           </Alert>
           {isDataAvailable &&
             <button className="btn btn-primary btn-lg" onClick={handleNext} >
               <FontAwesomeIcon icon={faRightLong} />
             </button>
-          }
-        </div>
-      )}
-
-      {currentStep === "roofingCalculator" && (
-        <RoofingCalculator onBackClick={handleBackClick} squareFootArea={squareFootArea}
-        />
-      )}
-      {/* Display the error using the Alert component */}
-
-
+          } */}
     </div>
+  )
+}
+
+{
+  currentStep === "roofingCalculator" && (
+    <RoofingCalculator onBackClick={handleBackClick} squareFootArea={squareFootArea}
+    />
+  )
+}
+{/* Display the error using the Alert component */ }
+
+
+    </div >
   );
 
 
