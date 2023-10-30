@@ -1,7 +1,7 @@
 .bg-image {
   /* Your background image styles here */
   background-image: url('../assets/images/contact.jpg');
-  padding: 6rem;
+  padding: 4rem;
 }
 
 .form-container {
@@ -92,6 +92,19 @@
     line-height: normal;
     margin-top: 10px;
   }
+
+
 }
 
 
+@media (min-width:320px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+
+  .bg-image {
+    padding: 2rem !important;
+  }
+
+  .bg-row {
+    padding: 1rem !important;
+  }
+  }

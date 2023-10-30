@@ -29,7 +29,7 @@ function HeroSection() {
             <img
               src={roof}
               alt="Roofing"
-              className='w-100 img-responsive'
+              className='w-100 img-responsive mt-1'
             />
           {/* </div> */}
         </div>

@@ -186,7 +186,7 @@ function RoofMap() {
             </div>
           </div>
           <div className="col-md-7">
-            <div style={{ height: "40vw", width: "40vw" }}>
+            <div className="mapsettings" style={{ height: "50vw", width: "100%", marginTop:'10px' }}>
               {coordinates && coordinates.lat && coordinates.lng && <GoogleMapReact
                 bootstrapURLKeys={{
                   key: "AIzaSyAYfF58L0E5xVtlCNlspolj1RNSRJJY2SQ",

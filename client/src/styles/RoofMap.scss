@@ -29,18 +29,18 @@
 }
 
 
-.form .fa-search{
+.form .fa-search {
 
   position: absolute;
-  top:20px;
+  top: 20px;
   left: 20px;
   color: #9ca3af;
 
 }
 
-.form span{
+.form span {
 
-      position: absolute;
+  position: absolute;
   right: 17px;
   top: 13px;
   padding: 2px;
@@ -48,26 +48,26 @@
 
 }
 
-.left-pan{
+.left-pan {
   padding-left: 7px;
 }
 
-.left-pan i{
- 
- padding-left: 10px;
+.left-pan i {
+
+  padding-left: 10px;
 }
 
-.form-input{
+.form-input {
   border: 0.8px solid;
   height: 52px;
   text-indent: 33px;
   border-radius: 0;
 }
 
-.form-input:focus{
+.form-input:focus {
 
   box-shadow: none;
-  border:none;
+  border: none;
 }
 
 .heading {
@@ -101,3 +101,12 @@
     border-color: #273441;
   }
 }
+
+
+@media (min-width:320px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+
+  .mapwrap {
+    padding: 3rem;
+  }
+  }
