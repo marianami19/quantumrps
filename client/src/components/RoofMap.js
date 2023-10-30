@@ -141,7 +141,7 @@ function RoofMap() {
 
     <div id="roofing">
       {currentStep === "roofMap" && (
-        <div className="container mb-5">
+        <div className="container mapwrap">
           <div className="row">
             <div className="col-md-5">
               <h2 className="heading">
@@ -176,7 +176,7 @@ function RoofMap() {
               <div className="next-btn">
                 {isDataAvailable &&
 
-                  <div className="calculate-button text-center">
+                  <div className="calculate-button text-start">
                     <button type="submit" className="btn btn-outline-dark mt-2"  onClick={handleNext} >SUBMIT
                     <img src={next} alt=">" className="m-auto"/>
                     </button>
