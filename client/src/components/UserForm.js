@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Axios from "axios";
 import "../styles/UserForm.scss";
 import phone from "../assets/images/PhoneCircleicon.svg";
 import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 function UserForm() {
   const [formData, setFormData] = useState({
@@ -65,7 +65,7 @@ function UserForm() {
   };
 
   return (
-    <div className="container-fluid bg-image" id="contact">
+    <div className="container-fluid bg-image" id="contact" >
       <div className="container">
         <div className="row justify-content-center bg-row">
           {/* Left Column */}

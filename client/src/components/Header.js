@@ -4,8 +4,17 @@ import {Link } from 'react-router-dom';
 import "../styles/Header.scss";
 
 function Header() {
+  const scrollToElement = () => {
+    // Replace 'elementId' with the actual ID of the element you want to scroll to
+    const element = document.getElementById('contact');
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <header className="header sticky-top bg-white">
+    <header className="header sticky-top bg-white" >
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           {/* <a className="navbar-brand" href="#"> */}
@@ -26,13 +35,18 @@ function Header() {
             className="collapse navbar-collapse justify-content-end"
             id="navbarNav"
           >
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav ml-auto align-items-center">
              
               <li className="nav-item">
               <Link   className="nav-link" to="/">HOME</Link>
               </li>
               <li className="nav-item">
               <Link   className="nav-link" to="/about-us">ABOUT</Link>
+              </li>
+              <li className="nav-item">
+                <div className="head-button text-center ms-2">
+                  <button  onClick={scrollToElement} className="btn btn-outline-dark">CONTACT US</button>
+                </div>
               </li>
             
              
