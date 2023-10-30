@@ -19,7 +19,7 @@ function HeroSection() {
                 <p className="description">Join us in our mission to transform the industry and experience the difference today.</p>
               </div>
               <div className="calculate-button">
-              <button type="button" class="btn btn-outline-dark">Calculate Your Estimate</button>
+              <button type="button" className="btn btn-outline-dark">Calculate Your Estimate</button>
               </div>
             </div>
           </div>

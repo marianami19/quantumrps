@@ -1,80 +1,92 @@
 .bg-image {
-  position: relative;
-  background-color: #001f3f; /* Navy Blue Background Color */
-  color: #fff; /* White Text Color */
-  height: 100vh; /* Full viewport height */
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../assets/images/roofing-2.png");
-    background-size: cover;
-    background-position: center;
-    filter: blur(8px); /* Apply a blur effect to the background image */
-    transition: filter 0.3s ease-in-out;
-  }
-
-  .container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .hero-title {
-    font-size: 36px;
-    font-weight: bold;
-  }
-
-  .hero-description {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-
-  .image-container {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-
-    .img-fluid {
-      max-width: 100%;
-      height: auto;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .img-hover {
-      &:hover {
-        transform: scale(1.05); /* Slightly scale image on hover */
-      }
-    }
-  }
+  /* Your background image styles here */
+  background-image: url('../assets/images/contact.jpg');
+  padding: 6rem;
 }
 
-/* Form styles */
 .form-container {
-  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  z-index: 2;
-  color: black;
-  font-size: 14px;
-}
-
-.form-group {
-  margin-bottom: 15px;
+  font-family: "Century Gothic";
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 64px;
+  letter-spacing: 0em;
   text-align: left;
 }
 
-/* Hover effect for form */
-.form-container:hover {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Add a stronger shadow on hover */
+.column-heading {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
 }
+
+.column-subheading {
+  font-family: "Century Gothic";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #E3E8ED;
+}
+
+.bg-row {
+  background-color: #273441;
+  padding: 2rem 4rem;
+
+}
+
+.call-info {
+  font-family: "Century Gothic";
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 29.43px;
+  color: #E3E8ED;
+
+  .phone-icon {
+    color: #E3E8ED;
+    width: 40px;
+    height: 40px;
+  }
+
+  .phone-number {
+    color: #E3E8ED;
+    margin-left: 10px;
+  }
+}
+
+.bg-form {
+  background-color: #EAF0F4;
+  padding: 2rem;
+  font-family: "Century Gothic";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  .form-group {
+    // margin-bottom: 20px;
+
+    label {
+      font-weight: 700;
+    }
+  }
+
+  .alerts {
+    height: 50px;
+  }
+
+  .calculate-button {
+
+    button {
+      border-width: medium;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 0;
+      border-color: #273441;
+    }
+  }
+}
+
 

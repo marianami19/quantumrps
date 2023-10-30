@@ -1,39 +1,34 @@
 import React, { useState } from "react";
-import Axios from "axios"; // Import Axios for making HTTP requests
+import Axios from "axios";
 import "../styles/UserForm.scss";
+import phone from "../assets/images/PhoneCircleicon.svg";
 import { Alert } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-   faCheckCircle
-} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 function UserForm() {
-  // Initialize state to store form data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     squareFootage: "",
   });
+
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
   const [success, setSuccess] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Function to handle form submission
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     try {
-      // Make a POST request to your backend endpoint
       const response = await Axios.post(
         "https://quantrps.onrender.com/submit-form",
         formData
       );
 
       if (response.status === 200) {
-        console.log("Form submitted successfully!");
-        // Reset the form fields after submission (if needed)
         setSuccess("Form submitted successfully!");
         setShowSuccess(true);
         setTimeout(() => {
@@ -45,30 +40,22 @@ function UserForm() {
           phone: "",
           squareFootage: "",
         });
-
       } else {
-        console.error("Form submission failed. Status:", response.status);
-        // Handle the failure (e.g., display an error message to the user)
         setError('Error submitting form');
         setShowError(true);
-        // Automatically hide the error alert after 3 seconds
         setTimeout(() => {
           setShowError(false);
         }, 3000);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
       setError('Error submitting form');
       setShowError(true);
-      // Automatically hide the error alert after 3 seconds
       setTimeout(() => {
         setShowError(false);
       }, 3000);
-      // Handle any errors (e.g., display an error message to the user)
     }
   };
 
-  // Function to handle input field changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -80,87 +67,92 @@ function UserForm() {
   return (
     <div className="container-fluid bg-image" id="contact">
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-6 form-container">
-            <div className="row">
-              <div className="col-md-6 d-flex flex-column justify-content-center align-items-center">
-                <h2>Contact Us</h2>
-                <p>
-                  We're here to help. Feel free to contact us using the form
-                  below, and we'll respond promptly. Your satisfaction is our
-                  top priority.
-                </p>
-                <div></div>
-              </div>
+        <div className="row justify-content-center bg-row">
+          {/* Left Column */}
+          <div className="col-md-6 form-container d-flex flex-column ">
+            <p className="column-subheading">
+              Need a more<br />detailed solution?
+            </p>
+            <h2 className="column-heading">
+              Get in touch with us
+            </h2>
+            <p className="call-info mt-auto">
+              Fill in the form, or give us a call at <br/>
+              {/* <FontAwesomeIcon icon={faPhone} /> */}
+              {/* <div className="d-flex"> */}
+                <img  className="phone-icon" src={phone} alt="phone" />
+                <span className="phone-number"><a href="tel:(239) 372-3757">(239) 372-3757</a></span>
+              {/* </div> */}
+            </p>
+          </div>
 
-              <div className="col-md-6">
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label>Name:</label>
-                    <input
-                      type="text"
-                      name="name"
-                      className="form-control"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Email:</label>
-                    <input
-                      type="email"
-                      name="email"
-                      className="form-control"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Phone Number:</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      className="form-control"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Square Footage:</label>
-                    <input
-                      type="number"
-                      name="squareFootage"
-                      className="form-control"
-                      value={formData.squareFootage}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div style={{height: '50px'}}>
-                  <Alert variant="danger" show={showError} onClose={() => setShowError(false)} dismissible>
-                  {error}
-                </Alert>
-                <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
-                  <FontAwesomeIcon icon={faCheckCircle} /> {success}
-                </Alert>
+          {/* Right Column - Form */}
+          <div className="col-md-6">
+            <div className="bg-form">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
-                  <button
-                    type="submit"
-                    className="btn btn-lg btn-primary text-center mt-2"
-                  >
-                    Submit
-                  </button>
-                </form>
-            
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Phone Number:</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    className="form-control"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Roof Square Footage:</label>
+                  <input
+                    type="number"
+                    name="squareFootage"
+                    className="form-control"
+                    value={formData.squareFootage}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="alerts">
+                  <Alert variant="danger" show={showError} onClose={() => setShowError(false)} dismissible>
+                    {error}
+                  </Alert>
+                  <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
+                    <FontAwesomeIcon icon={faCheckCircle} /> {success}
+                  </Alert>
+                </div>
+      
+
+                <div className="calculate-button text-center">
+              <button  type="submit" className="btn btn-outline-dark mt-2">SUBMIT</button>
+              <p>We'll get back to you soon!</p>
               </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
