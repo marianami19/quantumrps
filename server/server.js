@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 // const mysql = require("mysql");
 const cors = require("cors"); // Import cors package
-const axios = require("axios");
 const app = express();
 app.use(cors()); // Enable CORS for all routes
 // const app = express();

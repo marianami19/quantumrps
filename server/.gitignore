@@ -1,3 +1,5 @@
 # .gitignore
 node_modules
 
+# Ignore config.js file
+/config.js

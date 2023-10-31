@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../config/db.js");
 
+
 router.post("/submit-form", (req, res) => {
     const formData = req.body;
     console.log("in", req.body);

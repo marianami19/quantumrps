@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const config = require("../../config"); 
 const GOOGLE_API_KEY = config.googleApiKey;
+const axios = require("axios");
 
 // Endpoint for fetching coordinates based on place_id
 router.get("/geocode", async (req, res) => {

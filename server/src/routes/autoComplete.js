@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const config = require("../../config"); 
 const GOOGLE_API_KEY = config.googleApiKey;
+const axios = require("axios");
 
 // Endpoint for fetching autocomplete suggestions
 router.get("/autocomplete", async (req, res) => {
+  console.log("df")
   try {
     const input = req.query.input;
 
