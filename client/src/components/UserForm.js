@@ -90,7 +90,7 @@ function UserForm() {
           <div className="col-md-6">
             <div className="bg-form">
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="form-group mb-1">
                   <label>Name:</label>
                   <input
                     type="text"
@@ -101,7 +101,7 @@ function UserForm() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-1">
                   <label>Email:</label>
                   <input
                     type="email"
@@ -112,7 +112,7 @@ function UserForm() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-1">
                   <label>Phone Number:</label>
                   <input
                     type="tel"
@@ -123,7 +123,7 @@ function UserForm() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-1">
                   <label>Roof Square Footage:</label>
                   <input
                     type="number"
@@ -144,8 +144,8 @@ function UserForm() {
                 </div>
 
 
-                <div className="calculate-button text-center">
-                  <button type="submit" className="btn btn-outline-dark mt-2">SUBMIT</button>
+                <div className="contact-button text-center">
+                  <button type="submit" className="btn btn-outline-dark">SUBMIT</button>
                   <p className="under-submit-text">We'll get back to you soon!</p>
                 </div>
               </form>
