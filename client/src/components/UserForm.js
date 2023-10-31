@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import "../styles/UserForm.scss";
 import phone from "../assets/images/PhoneCircleicon.svg";

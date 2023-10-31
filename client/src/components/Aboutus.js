@@ -26,7 +26,7 @@ const AboutUs = () => {
         <div className="col-md-4 mt-2">
           <img
             src={ourstory}
-            alt="Our Story Image"
+            alt="Our Story"
             className="img-fluid"
           />
         </div>
@@ -37,7 +37,7 @@ const AboutUs = () => {
       <div className="col-md-4 mt-2">
           <img
             src={vision}
-            alt="Our Story Image"
+            alt="Our Story"
             className="img-fluid"
           />
         </div>
@@ -72,7 +72,7 @@ const AboutUs = () => {
         <div className="col-md-4 mt-2">
           <img
             src={mission}
-            alt="Our Story Image"
+            alt="Our Story"
             className="img-fluid"
           />
         </div>
