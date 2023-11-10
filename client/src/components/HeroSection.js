@@ -23,11 +23,11 @@ function HeroSection() {
                 <h1 className="line">Quantum Roofing.</h1>
               </div>
               <div className="text-line">
-                <p className="description">
+                <h3 className="description">
                   At Quantum Roofing and Professional Services, we believe that
                   your roofing project should be straightforward, stress-free,
                   and cost-effective.
-                </p>
+                </h3>
                 <p className="description">
                   Join us in our mission to transform the industry and
                   experience the difference today.

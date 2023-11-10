@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Axios from "axios";
 import "../styles/UserForm.scss";
 import phone from "../assets/images/PhoneCircleicon.svg";
-import { Alert } from 'react-bootstrap';
+import { Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 function UserForm() {
   const [formData, setFormData] = useState({
@@ -41,14 +41,14 @@ function UserForm() {
           squareFootage: "",
         });
       } else {
-        setError('Error submitting form');
+        setError("Error submitting form");
         setShowError(true);
         setTimeout(() => {
           setShowError(false);
         }, 3000);
       }
     } catch (error) {
-      setError('Error submitting form');
+      setError("Error submitting form");
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
@@ -65,25 +65,27 @@ function UserForm() {
   };
 
   return (
-    <div className="container-fluid bg-image" id="contact" >
+    <div className="container-fluid bg-image" id="contact">
       <div className="container">
         <div className="row justify-content-center bg-row">
           {/* Left Column */}
           <div className="col-md-6 form-container d-flex flex-column ">
             <p className="column-subheading">
-              Need a more<br />detailed solution?
+              Need a more
+              <br />
+              detailed solution?
             </p>
-            <h2 className="column-heading">
-              Get in touch with us
-            </h2>
-            <p className="call-info mt-auto">
+            <h2 className="column-heading">Get in touch with us</h2>
+            <h3 className="call-info mt-auto">
               Fill in the form, or give us a call at <br />
               {/* <FontAwesomeIcon icon={faPhone} /> */}
               {/* <div className="d-flex"> */}
               <img className="phone-icon" src={phone} alt="phone" />
-              <span className="phone-number"><a href="tel:(239) 372-3757">(239) 372-3757</a></span>
+              <span className="phone-number">
+                <a href="tel:(239) 372-3757">(239) 372-3757</a>
+              </span>
               {/* </div> */}
-            </p>
+            </h3>
           </div>
 
           {/* Right Column - Form */}
@@ -135,18 +137,31 @@ function UserForm() {
                   />
                 </div>
                 <div className="alerts">
-                  <Alert variant="danger" show={showError} onClose={() => setShowError(false)} dismissible>
+                  <Alert
+                    variant="danger"
+                    show={showError}
+                    onClose={() => setShowError(false)}
+                    dismissible
+                  >
                     {error}
                   </Alert>
-                  <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
+                  <Alert
+                    variant="success"
+                    show={showSuccess}
+                    onClose={() => setShowSuccess(false)}
+                    dismissible
+                  >
                     <FontAwesomeIcon icon={faCheckCircle} /> {success}
                   </Alert>
                 </div>
 
-
                 <div className="contact-button text-center">
-                  <button type="submit" className="btn btn-outline-dark">SUBMIT</button>
-                  <p className="under-submit-text">We'll get back to you soon!</p>
+                  <button type="submit" className="btn btn-outline-dark">
+                    SUBMIT
+                  </button>
+                  <p className="under-submit-text">
+                    We'll get back to you soon!
+                  </p>
                 </div>
               </form>
             </div>
