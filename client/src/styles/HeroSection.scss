@@ -2,78 +2,72 @@
   // height: 100vh;
   font-family: "Century Gothic";
 
-  .row{
+  .row {
     margin: 80px 0;
-  .text-content {
-    padding: 20px;
+    .text-content {
+      padding: 20px;
 
-    .text-group {
-      .text-line {
-        font-family: "Century Gothic";
-        font-size: 3.4rem;
-        line-height: 58px;
-        letter-spacing: 1px;
-        text-align: left;
+      .text-group {
+        .text-line {
+          font-family: "Century Gothic";
+          font-size: 3.4rem;
+          line-height: 58px;
+          letter-spacing: 1px;
+          text-align: left;
 
-        .line {
+          .line {
+            font-weight: 700;
+            color: #00529c;
+            font-size: 3.4rem;
+            line-height: 58px;
+            margin-bottom: 3rem;
+
+            &:not(:last-child) {
+              margin-bottom: 1rem;
+            }
+          }
+        }
+
+        .description {
+          font-size: 1.25rem;
+          line-height: 32px;
+          letter-spacing: 0em;
+          text-align: left;
           font-weight: 700;
-          color: #00529C;
-
-          margin-bottom: 3rem;
+          color: #273441;
 
           &:not(:last-child) {
-            margin-bottom: 1rem;
+            margin-bottom: 1.7rem;
+            font-weight: 200;
           }
         }
       }
 
-      .description {
-        font-size: 1.25rem;
-        line-height: 32px;
-        letter-spacing: 0em;
-        text-align: left;
-        font-weight: 700;
-        color: #273441;
+      .calculate-button {
+        margin-top: 3.2rem;
 
-        &:not(:last-child) {
-          margin-bottom: 1.7rem;
-    font-weight: 200;
-
+        button {
+          border-width: medium;
+          padding: 18px 28px;
+          float: left;
+          font-size: 1.2rem;
+          font-weight: bold;
+          border-radius: 0;
+          border-color: #273441;
         }
       }
     }
 
-    .calculate-button {
-      margin-top: 3.2rem;
+    .image-container {
+      text-align: center;
 
-      button {
-        border-width: medium;
-        padding: 18px 28px;
-        float: left;
-        font-size: 1.2rem;
-        font-weight: bold;
-        border-radius: 0;
-        border-color: #273441;
+      img {
+        margin-top: 20px;
       }
     }
   }
 
-  .image-container {
-    text-align: center;
-
-    img {
-      margin-top: 20px;
-    }
-  }
-
-}
-
-
-
   /* HomeScreen.scss */
 
   /* Previous styles for the HomeScreen component */
-
-
-
 }
