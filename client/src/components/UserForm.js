@@ -131,7 +131,6 @@ function UserForm() {
                     className="form-control"
                     value={formData.squareFootage}
                     onChange={handleInputChange}
-                    required
                   />
                 </div>
                 <div className="alerts">

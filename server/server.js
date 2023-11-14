@@ -17,6 +17,7 @@ const viewDataRoute = require("./src/routes/viewData");
 const autoComplete = require("./src/routes/autoComplete"); 
 const geocode = require("./src/routes/geocode"); 
 const roofArea = require("./src/routes/roofArea"); 
+const triggerMail = require("./src/routes/triggerEmail"); 
 
 // Set up routes
 app.use(submitFormRoute);
@@ -24,6 +25,7 @@ app.use(viewDataRoute);
 app.use(autoComplete);
 app.use(geocode);
 app.use(roofArea);
+app.use(triggerMail);
 
 const PORT = 3306;
 app.listen(PORT, () => {
