@@ -65,15 +65,15 @@ function UserForm() {
   };
 
   return (
-    <div className="container-fluid bg-image" id="contact">
-      <div className="container">
-        <div className="row justify-content-center bg-row">
+    <div className="container-fluid d-flex  justify-content-center  bg-image" id="contact">
+      <div className="bg-row col-md-8 ">
+        <div className="d-flex flex-wrap">
           {/* Left Column */}
-          <div className="col-md-6 form-container d-flex flex-column ">
+          <div className="form-container d-flex flex-column  ">
             <p className="column-subheading">
-              Need a more
+              Need a comprehensive
               <br />
-              detailed solution?
+              roofing solution?
             </p>
             <h2 className="column-heading">Get in touch with us</h2>
             <h3 className="call-info mt-auto">
@@ -89,7 +89,7 @@ function UserForm() {
           </div>
 
           {/* Right Column - Form */}
-          <div className="col-md-6">
+          <div className="form-wrap">
             <div className="bg-form">
               <form onSubmit={handleSubmit}>
                 <div className="form-group mb-1">
@@ -164,9 +164,9 @@ function UserForm() {
                 </div>
               </form>
             </div>
-          </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 .bg-image {
   /* Your background image styles here */
   background-image: url('../assets/images/contact.jpg');
-  padding: 4rem;
+  padding: 6rem 0 !important
 }
 
 .form-container {
@@ -12,6 +12,11 @@
   line-height: 64px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.form-wrap {
+  margin-left: auto;
+  width: 350px;
 }
 
 .column-heading {
@@ -31,7 +36,7 @@
 
 .bg-row {
   background-color: #273441;
-  padding: 1.5rem;
+  padding: 3rem;
 
 }
 
@@ -56,7 +61,7 @@
 
 .bg-form {
   background-color: #EAF0F4;
-  padding: 1.5rem;
+  padding: 2.5rem;
   font-family: "Century Gothic";
   font-size: 14px;
   font-weight: 700;
@@ -80,7 +85,7 @@
 
     button {
       border-width: medium;
-      padding: 12px 24px;
+      padding: 10px 32px;
       font-size: 14px;
       font-weight: bold;
       border-radius: 0;
@@ -97,14 +102,14 @@
 }
 
 
-@media (min-width:320px) {
-  /* smartphones, iPhone, portrait 480x320 phones */
+// @media (min-width:320px) {
+//   /* smartphones, iPhone, portrait 480x320 phones */
 
-  .bg-image {
-    padding: 2rem !important;
-  }
+//   .bg-image {
+//     padding: 2rem 0 !important;
+//   }
 
-  .bg-row {
-    padding: 1rem !important;
-  }
-  }
+//   .bg-row {
+//     padding: 1rem !important;
+//   }
+//   }
