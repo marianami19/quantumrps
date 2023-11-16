@@ -4,8 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faRightLong, faLeftLong
 } from '@fortawesome/free-solid-svg-icons';
+import GoogleMapReact from "google-map-react";
+import Marker from "./Marker";
 
-function RoofingCalculator({ onBackClick, squareFootArea }) {
+
+function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates }) {
   // Define state variables for form inputs
   const [step, setStep] = useState(1);
   const [roofingMaterial, setRoofingMaterial] = useState("shingles");
@@ -19,7 +22,7 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
   const [lowerRange, setLowerRange] = useState(0);
   const [upperRange, setUpperRange] = useState(0);
   const [showResults, setShowResults] = useState(false);
-
+  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY.toString();
 
   const nextStep = () => {
     if (step < 5) {
@@ -447,6 +450,30 @@ function RoofingCalculator({ onBackClick, squareFootArea }) {
           }
           {/* Conditionally render the popup */}
         </div>
+
+        <div style={{ height: "300px", width: "100%" }}>
+        {selectedCoordinates && (
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: apiKey }}
+            defaultCenter={{
+              lat: selectedCoordinates.lat,
+              lng: selectedCoordinates.lng,
+            }}
+            defaultZoom={20}
+            options={(map) => ({
+              draggable: false,
+              mapTypeId: map.MapTypeId.SATELLITE,
+              gestureHandling: "none", // Disable all gestures (pan, zoom, etc.)
+            })}
+          >
+            <Marker
+              text="Selected Location"
+              lat={selectedCoordinates.lat}
+              lng={selectedCoordinates.lng}
+            />
+          </GoogleMapReact>
+        )}
+      </div>
       </div>
 
 

@@ -67,7 +67,7 @@ function UserForm() {
   return (
     <div className="container-fluid d-flex  justify-content-center  bg-image" id="contact">
       <div className="bg-row col-md-8 ">
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-around">
           {/* Left Column */}
           <div className="form-container d-flex flex-column  ">
             <p className="column-subheading">

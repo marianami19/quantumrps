@@ -138,11 +138,12 @@ function RoofMap() {
     <div id="roofing">
       {currentStep === "roofMap" && (
         <div className="container mapwrap">
-          <div className="row">
-            <div className="col-md-5">
-              <h2 className="heading">Calculate your Roofing Estimate</h2>
+          <div className="d-flex  justify-content-center flex-margin flex-wrap">
+            <div className="pe-5">
+              <div>
+              <h2 className="heading">Calculate your<br/>Roofing Estimate</h2>
               <h4 className="subheading">
-                Type in your address and select your roof on the map
+                Type in your address and select<br/> your roof on the map
               </h4>
               <div className="searchbar">
                 <input
@@ -187,20 +188,20 @@ function RoofMap() {
                   <div className="calculate-button text-start">
                     <button
                       type="submit"
-                      className="btn btn-outline-dark mt-2"
+                      className="btn btn-outline-dark mt-3"
                       onClick={handleNext}
                     >
-                      SUBMIT
-                      <img src={next} alt=">" className="m-auto" />
+                      NEXT
+                      <img src={next} alt=">" className="ms-2" />
                     </button>
                   </div>
                 )}
               </div>
             </div>
-            <div className="col-md-7">
+            </div>
               <div
                 className="mapsettings"
-                style={{ height: "50vw", width: "100%", marginTop: "10px" }}
+                style={{ height: "350px", width: "350px", marginTop: "10px" }}
               >
                 {coordinates && coordinates.lat && coordinates.lng && (
                   <GoogleMapReact
@@ -226,7 +227,7 @@ function RoofMap() {
                   </GoogleMapReact>
                 )}
               </div>
-            </div>
+      
           </div>
           {/* <div className="row height d-flex justify-content-center align-items-center ">
             <h1 className="hero-title ">Calculate your Roofing Estimate</h1>
@@ -305,6 +306,7 @@ function RoofMap() {
         <RoofingCalculator
           onBackClick={handleBackClick}
           squareFootArea={squareFootArea}
+          selectedCoordinates={coordinates}
         />
       )}
       {/* Display the error using the Alert component */}
