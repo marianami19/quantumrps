@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home";
 import AboutUs from "./components/Aboutus";
 import UserForm from "./components/UserForm";
+import ScrollToTop from "./components/ScrollToTop";
 import DisplayData from "./components/DisplayData";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <ScrollToTop />
       <Header/>
         <Routes>
           <Route path="/userlist" element={<DisplayData />} />

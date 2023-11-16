@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../assets/images/logo.png"; // Import your logo image
-import {Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import "../styles/Header.scss";
 
 function Header() {
@@ -36,19 +36,17 @@ function Header() {
             id="navbarNav"
           >
             <ul className="navbar-nav ml-auto align-items-center">
-             
               <li className="nav-item">
-              <Link   className="nav-link" to="/">HOME</Link>
+              <NavLink    className="nav-NavLink " to="/" activeClassName="active">HOME</NavLink >
               </li>
               <li className="nav-item">
-              <Link   className="nav-link" to="/about-us">ABOUT</Link>
+              <NavLink    className="nav-link" to="/about-us" activeClassName="active">ABOUT</NavLink >
               </li>
               <li className="nav-item">
                 <div className="head-button text-center ms-2">
                   <button  onClick={scrollToElement} className="btn btn-outline-dark">CONTACT US</button>
                 </div>
               </li>
-            
              
             </ul>
           </div>

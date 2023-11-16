@@ -95,7 +95,7 @@ function RoofMap() {
       try {
         // Send a request to the backend endpoint to fetch solar data
         const solarResponse = await axios.get(
-          `https://quantrps.onrender.com/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
+          `http://localhost:3306/solar-data?latitude=${coordinates.lat}&longitude=${coordinates.lng}`
         );
 
         // Extract the square foot area from the response
