@@ -1,31 +1,42 @@
-
-
-.header{
-
+.header {
+  a {
+    color: #273441;
+    text-decoration: none;
+  }
   .active {
     text-decoration: underline;
+    text-underline-offset: 0.3em;
+    text-decoration-thickness: 2px;
   }
+
   .nav-item {
     font-family: Century Gothic;
-font-size: 16px;
-font-weight: 700;
-line-height: 20px;
-letter-spacing: 0em;
-// text-align: left;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    // text-align: left;
 
   }
+
   // .nav-link {
   //     font-size: larger;
   //     font-weight: 600;
   // }
-  
+
   .head-button {
-  
-      button {
-        // border-width: medium;
-        padding: 12px 24px;
-        border-radius: 0;
-        border-color: #273441;
-      }
+
+    button {
+      // border-width: medium;
+      font-family: Century Gothic;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0em;
+      padding: 12px 24px;
+      border-radius: 0;
+      border-color: #273441;
+      border-width: revert-layer;
     }
+  }
 }

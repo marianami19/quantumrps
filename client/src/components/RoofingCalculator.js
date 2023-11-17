@@ -285,57 +285,20 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                       Do You Need New Gutters?
                     </h4>
 
-                    <div >
-                      <div className="">
-                        <div className="">
-                          <div class="btn-group" data-toggle="buttons">
-                            {/* <div className="calculate-button text-start">
-                              <button
-                                type="submit"
-                                className="btn btn-outline-dark mt-3"
-                                onClick={onBackClick}
-                              >
-                                <img src={back} alt=">" className="me-2" />
-                                BACK
-                              </button>
-                            </div> */}
-                            <label class="btn btn-outline-dark">
-                              <input type="radio" name="YES"   value="yes" id="yes"  checked={needNewGutters === true}
-                                  onChange={() => setNeedNewGutters(true)} /> YES
-                            </label>
-                            <label class="btn btn-outline-dark">
-                              <input type="radio" name="options" id="no" value="no"
-                                  checked={needNewGutters === false}
-                                  onChange={() => setNeedNewGutters(false)} /> NO
-                            </label>
-                      
-                          </div>
-                          {/* <div className=" text-center"> */}
-                            {/* <label>Do You Need New Gutters?</label> */}
-                            {/* <div>
-                              <label className="radio-inline">
-                                <input
-                                  type="radio"
-                                  value="yes"
-                                  checked={needNewGutters === true}
-                                  onChange={() => setNeedNewGutters(true)}
-                                />
-                                Yes
-                              </label>
-                              <label className="radio-inline">
-                                <input
-                                  type="radio"
-                                  value="no"
-                                  checked={needNewGutters === false}
-                                  onChange={() => setNeedNewGutters(false)}
-                                />
-                                No
-                              </label>
-                            </div> */}
-                          {/* </div> */}
-                        </div>
-                      </div>
+                    <div class="btn-group d-flex" data-toggle="buttons">
+
+                      <label class="btn btn-outline-dark">
+                        <input type="radio" name="YES" value="yes" id="yes" checked={needNewGutters === true}
+                          onChange={() => setNeedNewGutters(true)} /> YES
+                      </label>
+                      <label class="btn btn-outline-dark">
+                        <input type="radio" name="options" id="no" value="no"
+                          checked={needNewGutters === false}
+                          onChange={() => setNeedNewGutters(false)} /> NO
+                      </label>
+
                     </div>
+
                   </div>
                 )}
                 {step === 3 && (
