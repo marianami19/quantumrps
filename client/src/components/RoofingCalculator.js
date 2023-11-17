@@ -179,7 +179,7 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
 
         <div className="container mapwrap">
           <div className="d-flex  justify-content-center flex-margin flex-wrap">
-            <div className="pe-5">
+            <div className="pe-5 d-flex flex-column">
               <h2 className="heading">Calculate your<br />Roofing Estimate</h2>
               <form onSubmit={handleSubmit}>
                 {step === 1 && (
@@ -280,17 +280,39 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
 
                 {step === 2 && (
 
-                  <div className="row  d-flex justify-content-center align-items-center">
-                    <h1 className="hero-title">Do You Need New Gutters?</h1>
-                    <p className="hero-description">
-                      Select your preference
-                    </p>
-                    <div style={{ height: "200px", width: "100%" }}>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <div className="form-group text-center">
+                  <div className="">
+                    <h4 className="subheading">
+                      Do You Need New Gutters?
+                    </h4>
+
+                    <div >
+                      <div className="">
+                        <div className="">
+                          <div class="btn-group" data-toggle="buttons">
+                            {/* <div className="calculate-button text-start">
+                              <button
+                                type="submit"
+                                className="btn btn-outline-dark mt-3"
+                                onClick={onBackClick}
+                              >
+                                <img src={back} alt=">" className="me-2" />
+                                BACK
+                              </button>
+                            </div> */}
+                            <label class="btn btn-outline-dark">
+                              <input type="radio" name="YES"   value="yes" id="yes"  checked={needNewGutters === true}
+                                  onChange={() => setNeedNewGutters(true)} /> YES
+                            </label>
+                            <label class="btn btn-outline-dark">
+                              <input type="radio" name="options" id="no" value="no"
+                                  checked={needNewGutters === false}
+                                  onChange={() => setNeedNewGutters(false)} /> NO
+                            </label>
+                      
+                          </div>
+                          {/* <div className=" text-center"> */}
                             {/* <label>Do You Need New Gutters?</label> */}
-                            <div>
+                            {/* <div>
                               <label className="radio-inline">
                                 <input
                                   type="radio"
@@ -309,8 +331,8 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                                 />
                                 No
                               </label>
-                            </div>
-                          </div>
+                            </div> */}
+                          {/* </div> */}
                         </div>
                       </div>
                     </div>
@@ -430,7 +452,7 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                   </div>
                 </div>
               )}
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between mt-auto">
 
                 {step === 1 && (
                   // <button className="btn btn-lg btn-secondary" onClick={onBackClick}>

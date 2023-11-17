@@ -13,6 +13,8 @@ router.get('/solar-data', async (req, res) => {
     const solarResponse = await axios.get(
       `https://solar.googleapis.com/v1/buildingInsights:findClosest?location.latitude=${latitude}&location.longitude=${longitude}&requiredQuality=HIGH&key=${GOOGLE_API_KEY}`
     );
+
+    console.log("solarPotential.maxArrayAreaMeters2", solarResponse.data.solarPotential.maxArrayAreaMeters2 * 10.764)
     const wholeRoofStats = solarResponse.data.solarPotential.wholeRoofStats.areaMeters2 
 
     // console.log('api data',wholeRoofStats)
