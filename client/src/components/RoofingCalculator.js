@@ -134,6 +134,7 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
     calculateRange(totalCost);
 
     setShowResults(true);
+    nextStep();
   };
 
   // Function to calculate the lower and upper ranges
@@ -303,48 +304,34 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                 )}
                 {step === 3 && (
 
-                  <div className="row  d-flex justify-content-center align-items-center">
-                    <h1 className="hero-title">Tear Off, Removal, and Dumping of Old Roof?</h1>
-                    <p className="hero-description">
-                      We got that covered too!
-                    </p>
-                    <div style={{ height: "200px", width: "100%" }}>
-                      <div className="row">
+                  <div className="">
+                    <h1 className="subheading">Tear Off, removal, and dumping<br /> of Old Roof?</h1>
 
-
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <select
-                              className="form-control"
-                              value={tearOffLayers}
-                              onChange={(e) => setTearOffLayers(e.target.value)}
-                            >
-                              <option value="">Select Option</option>
-                              <option value="yes1">Yes, 1 Layer</option>
-                              <option value="yes2">Yes, 2 Layers</option>
-                              <option value="no">No</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="form-group">
+                      <select
+                        className="form-control"
+                        value={tearOffLayers}
+                        onChange={(e) => setTearOffLayers(e.target.value)}
+                      >
+                        <option value="">Select Option</option>
+                        <option value="yes1">Yes, 1 Layer</option>
+                        <option value="yes2">Yes, 2 Layers</option>
+                        <option value="no">No</option>
+                      </select>
                     </div>
                   </div>
                 )}
 
                 {step === 4 && (
 
-                  <div className="row  d-flex justify-content-center align-items-center">
-                    <h1 className="hero-title">A little more about your roof...</h1>
-                    <p className="hero-description">
-                      Number of ...
-                    </p>
-                    <div style={{ height: "200px", width: "100%" }}>
-                      <div className="row">
-                        <div className="col-md-3 col-sm-6 col-6">
-                          <div className="form-group">
+                  <div className="">
+                    <h1 className="subheading">Number of ...</h1>
+                
+                        <div className="d-flex">
+                          <div className="">
                             <label>Storeys</label>
                             <select
-                              className="form-control"
+                              className="form-control nos-w me-2"
                               value={numberOfStories}
                               onChange={(e) => setNumberOfStories(e.target.value)}
                             >
@@ -352,60 +339,52 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                               <option value="2">2</option>
                             </select>
                           </div>
-                        </div>
-                        <div className="col-md-3 col-sm-6 col-6">
-                          <div className="form-group">
+                          <div className="">
                             <label>Skylights</label>
                             <input
                               type="number"
                               min="0"
-                              className="form-control"
+                              className="form-control nos-w"
                               value={numberOfSkylights}
                               onChange={(e) => setNumberOfSkylights(e.target.value)}
                             />
                           </div>
                         </div>
-                        <div className="col-md-3 col-sm-6 col-6">
-                          <div className="form-group">
+                        <div className="d-flex">
+                          <div className=""> 
                             <label>Ridge Vents</label>
                             <input
                               type="number"
                               min="0"
-                              className="form-control"
+                              className="form-control nos-w me-2"
                               value={numberOfRidgeVents}
                               onChange={(e) => setNumberOfRidgeVents(e.target.value)}
                             />
                           </div>
-                        </div>
-                        <div className="col-md-3 col-sm-6 col-6">
-                          <div className="form-group">
+                          <div className="">
                             <label>Dormers</label>
                             <input
                               type="number"
                               min="0"
-                              className="form-control"
+                              className="form-control nos-w"
                               value={numberOfDormers}
                               onChange={(e) => setNumberOfDormers(e.target.value)}
                             />
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
                 )}
 
 
               </form>
               {step === 5 && (
                 <div className="">
-                  <h1 className="hero-title">Finally...</h1>
+                  <h1 className="subheading">Finally...</h1>
                   <p className="hero-description">
                     Hit the button to calculate your estimate
                   </p>
-                  <button className="btn btn-lg btn-primary" onClick={handleSubmit}>
-                    Calculate Roofing Estimate
-                  </button>
-                  <div style={{ height: "200px", width: "100%" }}>
+              
+                  <div >
                     {showResults && (
                       <div className="p-4">
                         <p>The total square footage of your roof is approximately <strong style={{ fontSize: 'larger' }}>{Math.round(squareFootArea)} square feet</strong>.</p>
@@ -447,7 +426,7 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                     </button>
                   </div>
                 )}
-                {step < 5 && (
+                {step < 4 && (
                   // <button className="btn btn-lg btn-primary mx-2" onClick={nextStep}>
                   //   <FontAwesomeIcon icon={faRightLong} />
                   // </button>
@@ -459,6 +438,21 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                     >
                       NEXT
                       <img src={next} alt=">" className="ms-2" />
+                    </button>
+                  </div>
+                )
+                }
+                {step === 4  && (
+                  // <button className="btn btn-lg btn-primary mx-2" onClick={nextStep}>
+                  //   <FontAwesomeIcon icon={faRightLong} />
+                  // </button>
+                  <div className="calculate-button text-start">
+                    <button
+                      type="submit"
+                      className="btn btn-outline-dark mt-3 calc-p" 
+                      onClick={handleSubmit}
+                    >
+                      CALCULATE
                     </button>
                   </div>
                 )

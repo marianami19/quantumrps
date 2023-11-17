@@ -43,7 +43,7 @@ router.post("/submit-form", (req, res) => {
   
     const sendEmail = async (data) => {
       try {
-        const response = await axios.post('http://localhost:3306/send-email', {
+        const response = await axios.post('https://quantrps.onrender.com/send-email', {
           recipients: ['Kagen@quantumRPS.com', 'Kevin@quantumrps.com'],
           subject: 'Prospective Client Notificaton',
           text:  data.join('\r\n'),
