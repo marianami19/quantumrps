@@ -139,8 +139,7 @@ function RoofMap() {
       {currentStep === "roofMap" && (
         <div className="container mapwrap">
           <div className="d-flex  justify-content-center flex-margin flex-wrap">
-            <div className="pe-5">
-              <div>
+            <div className="pe-5 d-flex flex-column">
               <h2 className="heading">Calculate your<br/>Roofing Estimate</h2>
               <h4 className="subheading">
                 Type in your address and select<br/> your roof on the map
@@ -183,7 +182,7 @@ function RoofMap() {
               >
                 <FontAwesomeIcon icon={faCheckCircle} /> {success}
               </Alert>
-              <div className="next-btn">
+              <div className="next-btn mt-auto">
                 {isDataAvailable && (
                   <div className="calculate-button text-start">
                     <button
@@ -197,7 +196,6 @@ function RoofMap() {
                   </div>
                 )}
               </div>
-            </div>
             </div>
               <div
                 className="mapsettings"

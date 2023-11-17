@@ -178,7 +178,7 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
     <Fragment>
       <div id="roofing">
 
-        <div className="container mapwrap">
+        <div className="container mapwrap fontf">
           <div className="d-flex  justify-content-center flex-margin flex-wrap">
             <div className="pe-5 d-flex flex-column">
               <h2 className="heading">Calculate your<br />Roofing Estimate</h2>
@@ -286,7 +286,7 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                       Do You Need New Gutters?
                     </h4>
 
-                    <div class="btn-group d-flex" data-toggle="buttons">
+                    <div class="btn-group d-flex" style={{width:"245.13px"}}data-toggle="buttons">
 
                       <label class="btn btn-outline-dark">
                         <input type="radio" name="YES" value="yes" id="yes" checked={needNewGutters === true}
@@ -378,20 +378,15 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
 
               </form>
               {step === 5 && (
-                <div className="">
-                  <h1 className="subheading">Finally...</h1>
-                  <p className="hero-description">
-                    Hit the button to calculate your estimate
-                  </p>
-              
-                  <div >
+                <div className="results">
                     {showResults && (
-                      <div className="p-4">
-                        <p>The total square footage of your roof is approximately <strong style={{ fontSize: 'larger' }}>{Math.round(squareFootArea)} square feet</strong>.</p>
-                        <p>Your estimated cost for a new roof falls within the range of <strong><span style={{ fontSize: 'larger' }}>${lowerRange}</span> to <span style={{ fontSize: 'larger' }}>${upperRange}</span></strong>.</p>
+                      <div className=" mt-3">
+                        <p className="p-line">The total square footage of your<br/> roof is approximately
+                       <div className="mt-2">  <strong>{Math.round(squareFootArea)} square feet</strong></div>
+                         </p>
+                         <p className="p-line">Your estimated cost for a new<br/> roof falls within the range of <div className="mt-2"><strong><span>${lowerRange}</span> to <span>${upperRange}</span></strong></div></p>
                       </div>
                     )}
-                  </div>
                 </div>
               )}
               <div className="d-flex justify-content-between mt-auto">
