@@ -8,6 +8,7 @@ import GoogleMapReact from "google-map-react";
 import Marker from "./Marker";
 import back from "../assets/images/Back (Stroke).svg";
 import next from "../assets/images/Next (Stroke).svg";
+import calc from "../assets/images/calc.jpg";
 
 function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates }) {
   // Define state variables for form inputs
@@ -173,7 +174,14 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
         break;
     }
   };
+  const scrollToElement = () => {
+    // Replace 'elementId' with the actual ID of the element you want to scroll to
+    const element = document.getElementById('contact');
 
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <Fragment>
       <div id="roofing">
@@ -286,7 +294,7 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                       Do You Need New Gutters?
                     </h4>
 
-                    <div class="btn-group d-flex" style={{width:"245.13px"}}data-toggle="buttons">
+                    <div class="btn-group d-flex" style={{ width: "245.13px" }} data-toggle="buttons">
 
                       <label class="btn btn-outline-dark">
                         <input type="radio" name="YES" value="yes" id="yes" checked={needNewGutters === true}
@@ -326,67 +334,67 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
 
                   <div className="">
                     <h1 className="subheading">Number of ...</h1>
-                
-                        <div className="d-flex">
-                          <div className="">
-                            <label>Storeys</label>
-                            <select
-                              className="form-control nos-w me-2"
-                              value={numberOfStories}
-                              onChange={(e) => setNumberOfStories(e.target.value)}
-                            >
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                            </select>
-                          </div>
-                          <div className="">
-                            <label>Skylights</label>
-                            <input
-                              type="number"
-                              min="0"
-                              className="form-control nos-w"
-                              value={numberOfSkylights}
-                              onChange={(e) => setNumberOfSkylights(e.target.value)}
-                            />
-                          </div>
-                        </div>
-                        <div className="d-flex">
-                          <div className=""> 
-                            <label>Ridge Vents</label>
-                            <input
-                              type="number"
-                              min="0"
-                              className="form-control nos-w me-2"
-                              value={numberOfRidgeVents}
-                              onChange={(e) => setNumberOfRidgeVents(e.target.value)}
-                            />
-                          </div>
-                          <div className="">
-                            <label>Dormers</label>
-                            <input
-                              type="number"
-                              min="0"
-                              className="form-control nos-w"
-                              value={numberOfDormers}
-                              onChange={(e) => setNumberOfDormers(e.target.value)}
-                            />
-                          </div>
-                        </div>
+
+                    <div className="d-flex">
+                      <div className="">
+                        <label>Storeys</label>
+                        <select
+                          className="form-control nos-w me-2"
+                          value={numberOfStories}
+                          onChange={(e) => setNumberOfStories(e.target.value)}
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                        </select>
                       </div>
+                      <div className="">
+                        <label>Skylights</label>
+                        <input
+                          type="number"
+                          min="0"
+                          className="form-control nos-w"
+                          value={numberOfSkylights}
+                          onChange={(e) => setNumberOfSkylights(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="d-flex">
+                      <div className="">
+                        <label>Ridge Vents</label>
+                        <input
+                          type="number"
+                          min="0"
+                          className="form-control nos-w me-2"
+                          value={numberOfRidgeVents}
+                          onChange={(e) => setNumberOfRidgeVents(e.target.value)}
+                        />
+                      </div>
+                      <div className="">
+                        <label>Dormers</label>
+                        <input
+                          type="number"
+                          min="0"
+                          className="form-control nos-w"
+                          value={numberOfDormers}
+                          onChange={(e) => setNumberOfDormers(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 )}
 
 
               </form>
               {step === 5 && (
                 <div className="results">
-                    {showResults && (
-                      <div className=" mt-3">
-                        <p className="p-line">The total square footage of your<br/> roof is approximately
-                       <div className="mt-2">  <strong>{Math.round(squareFootArea)} square feet</strong></div>
-                         </p>
-                         <p className="p-line">Your estimated cost for a new<br/> roof falls within the range of <div className="mt-2"><strong><span>${lowerRange}</span> to <span>${upperRange}</span></strong></div></p>
-                      </div>
-                    )}
+                  {showResults && (
+                    <div className=" mt-3">
+                      <p className="p-line">The total square footage of your<br /> roof is approximately
+                        <div className="mt-2">  <strong>{Math.round(squareFootArea)} square feet</strong></div>
+                      </p>
+                      <p className="p-line">Your estimated cost for a new<br /> roof falls within the range of <div className="mt-2"><strong><span>${lowerRange}</span> to <span>${upperRange}</span></strong></div></p>
+                    </div>
+                  )}
                 </div>
               )}
               <div className="d-flex justify-content-between mt-auto">
@@ -437,14 +445,14 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
                   </div>
                 )
                 }
-                {step === 4  && (
+                {step === 4 && (
                   // <button className="btn btn-lg btn-primary mx-2" onClick={nextStep}>
                   //   <FontAwesomeIcon icon={faRightLong} />
                   // </button>
                   <div className="calculate-button text-start">
                     <button
                       type="submit"
-                      className="btn btn-outline-dark mt-3 calc-p" 
+                      className="btn btn-outline-dark mt-3 calc-p"
                       onClick={handleSubmit}
                     >
                       CALCULATE
@@ -455,33 +463,56 @@ function RoofingCalculator({ onBackClick, squareFootArea, selectedCoordinates })
 
               </div>
             </div>
+            {step !== 5 && (
+              <div
+                className="mapsettings"
+                style={{ height: "350px", width: "350px", marginTop: "10px" }}
+              >
+                {selectedCoordinates && (
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ key: apiKey }}
+                    defaultCenter={{
+                      lat: selectedCoordinates.lat,
+                      lng: selectedCoordinates.lng,
+                    }}
+                    defaultZoom={20}
+                    options={(map) => ({
+                      draggable: false,
+                      mapTypeId: map.MapTypeId.SATELLITE,
+                      gestureHandling: "none", // Disable all gestures (pan, zoom, etc.)
+                    })}
+                  >
+                    <Marker
+                      text="Selected Location"
+                      lat={selectedCoordinates.lat}
+                      lng={selectedCoordinates.lng}
+                    />
+                  </GoogleMapReact>
+                )}
+              </div>)}
 
-            <div
-              className="mapsettings"
-              style={{ height: "350px", width: "350px", marginTop: "10px" }}
-            >
-              {selectedCoordinates && (
-                <GoogleMapReact
-                  bootstrapURLKeys={{ key: apiKey }}
-                  defaultCenter={{
-                    lat: selectedCoordinates.lat,
-                    lng: selectedCoordinates.lng,
-                  }}
-                  defaultZoom={20}
-                  options={(map) => ({
-                    draggable: false,
-                    mapTypeId: map.MapTypeId.SATELLITE,
-                    gestureHandling: "none", // Disable all gestures (pan, zoom, etc.)
-                  })}
-                >
-                  <Marker
-                    text="Selected Location"
-                    lat={selectedCoordinates.lat}
-                    lng={selectedCoordinates.lng}
-                  />
-                </GoogleMapReact>
-              )}
-            </div>
+
+            {step === 5 && (
+              <div
+                className="mapsettings"
+                style={{marginTop: "10px" }}
+              >
+                <div className="bg-End">
+
+                  <h2 className="heading">Connect with our<br />experts</h2>
+                  <p className="p-line">or</p>
+                  <h2 className="heading">Get a Quote</h2>
+                </div>
+                  <div className="roof-button calc-img text-center">
+                    <button onClick={scrollToElement} className="btn btn-light m-3">CONTACT US</button>
+                  </div>
+                {/* <img src={calc} alt="Quantum roofing" 
+                style={{  width: "350px", marginTop: "10px" }}
+                 />
+                   */}
+
+              </div>
+            )}
           </div>
 
 
