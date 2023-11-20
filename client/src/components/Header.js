@@ -16,7 +16,7 @@ function Header() {
   return (
     <header className="header sticky-top bg-white" >
       <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container-fluid">
+        <div className="container-fluid mx-md-4">
           {/* <a className="navbar-brand" href="#"> */}
           <img src={logo} alt="Logo" height={40}  />
           {/* </a> */}
@@ -39,7 +39,7 @@ function Header() {
               <li className="nav-item">
               <NavLink    className="nav-NavLink " to="/" activeClassName="active">HOME</NavLink >
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-md-4">
               <NavLink    className="nav-link" to="/about-us" activeClassName="active">ABOUT</NavLink >
               </li>
               <li className="nav-item">
