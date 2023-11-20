@@ -65,9 +65,9 @@ function UserForm() {
   };
 
   return (
-    <div className="container-fluid py-5 p-sm-1 p-md-3 p-lg-5 bg-image" id="contact">
-      <div className="bg-row m-xs-2 my-sm-1  m-lg-4 m-md-2">
-        <div className="d-flex flex-wrap flex-sm-wrap justify-content-center justify-content-lg-between p-4  p-sm-1 p-md-3 p-lg-5">
+    <div className="container-fluid py-5 p-sm-1 p-md-3 p-lg-5 p-xl-5 p-xxl-5 bg-image" id="contact">
+      <div className="bg-row m-xs-2 my-sm-1  m-lg-4 m-md-2  m-xl-5 m-xxl-5 ">
+        <div className="d-flex flex-wrap flex-sm-wrap justify-content-center justify-content-lg-between p-4  p-sm-1 p-md-3 p-lg-5  p-xl-5 p-xxl-5 ">
           {/* Left Column */}
           <div className="form-container d-flex flex-column  mx-2 ">
             <p className="column-subheading">
