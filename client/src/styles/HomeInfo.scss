@@ -1,7 +1,7 @@
   /* What Sets Us Apart Section */
   .what-sets-us-apart {
     background-color: #273441;
-    
+
     .section-title {
       font-family: 'Century Gothic';
       font-weight: 700;
@@ -12,7 +12,7 @@
     }
 
     .card {
-      width: 360px;
+      width: auto;
       height: 360px;
       background-color: #E3E8ED;
       border: none;
@@ -27,11 +27,11 @@
     }
 
     .card-title {
-        font-family: 'Century Gothic';
-        font-weight: 700;
-        font-size: 28px;
-        margin-bottom: 1rem;
-        color: #000000;
+      font-family: 'Century Gothic';
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 1rem;
+      color: #000000;
     }
 
     .card-text {
