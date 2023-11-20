@@ -39,7 +39,7 @@ function Header() {
   return (
     <header className="header sticky-top bg-white">
       <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container-fluid mx-md-4" ref={navbarRef}>
+        <div className="container-fluid  mx-md-4" ref={navbarRef}>
           <img src={logo} alt="Logo" height={40} />
           <button
             className="navbar-toggler"
