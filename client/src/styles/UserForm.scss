@@ -1,7 +1,7 @@
 .bg-image {
-  /* Your background image styles here */
   background-image: url('../assets/images/contact.jpg');
-  padding: 6rem 0 !important
+  background-position: center;
+  background-size: cover;
 }
 
 .form-container {
@@ -36,7 +36,7 @@
 
 .bg-row {
   background-color: #273441;
-  padding: 3rem;
+  // padding: 3rem;
 
 }
 
@@ -102,14 +102,3 @@
 }
 
 
-// @media (min-width:320px) {
-//   /* smartphones, iPhone, portrait 480x320 phones */
-
-//   .bg-image {
-//     padding: 2rem 0 !important;
-//   }
-
-//   .bg-row {
-//     padding: 1rem !important;
-//   }
-//   }

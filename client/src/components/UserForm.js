@@ -65,11 +65,11 @@ function UserForm() {
   };
 
   return (
-    <div className="container-fluid d-flex  justify-content-center  bg-image" id="contact">
-      <div className="bg-row col-md-8 ">
-        <div className="d-flex flex-wrap justify-content-around">
+    <div className="container-fluid py-5 p-sm-1 p-md-3 p-lg-5 bg-image" id="contact">
+      <div className="bg-row m-xs-2 my-sm-1  m-lg-4 m-md-2">
+        <div className="d-flex flex-wrap flex-sm-wrap justify-content-center justify-content-lg-between p-4  p-sm-1 p-md-3 p-lg-5">
           {/* Left Column */}
-          <div className="form-container d-flex flex-column  ">
+          <div className="form-container d-flex flex-column  mx-2 ">
             <p className="column-subheading">
               Need a comprehensive
               <br />
@@ -89,7 +89,7 @@ function UserForm() {
           </div>
 
           {/* Right Column - Form */}
-          <div className="form-wrap">
+          <div className="form-wrap ms-lg-auto">
             <div className="bg-form">
               <form onSubmit={handleSubmit}>
                 <div className="form-group mb-1">
