@@ -2,80 +2,83 @@ body {
   background-color: #F8FBFF;
   ;
 }
+
 .home-screen {
   // height: 100vh;
   font-family: "Century Gothic";
-
+position: relative;
 
   // .row {
-    // margin: 80px 0;
-    .text-content {
-      padding: 20px;
+  // margin: 80px 0;
+  .text-content {
+    padding: 20px;
 
-      .text-group {
-        .text-line {
-          font-family: "Century Gothic";
+    .text-group {
+      .text-line {
+        font-family: "Century Gothic";
+        font-size: 3.4rem;
+        line-height: 58px;
+        letter-spacing: 1px;
+        text-align: left;
+
+        .line {
+          font-weight: 700;
+          color: #00529c;
           font-size: 3.4rem;
           line-height: 58px;
-          letter-spacing: 1px;
-          text-align: left;
-
-          .line {
-            font-weight: 700;
-            color: #00529c;
-            font-size: 3.4rem;
-            line-height: 58px;
-            margin-bottom: 3rem;
-
-            &:not(:last-child) {
-              margin-bottom: 1rem;
-            }
-          }
-        }
-
-        .description {
-          font-size: 1rem;
-          line-height: 30px;
-          letter-spacing: 0em;
-          text-align: left;
-          font-weight: 700;
-          color: #273441;
+          margin-bottom: 3rem;
 
           &:not(:last-child) {
-            margin-bottom: 1.7rem;
-            font-weight: 200;
+            margin-bottom: 1rem;
           }
         }
       }
 
-      .calculate-button {
-        margin-top: 3.2rem;
+      .description {
+        font-size: 1rem;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+        font-weight: 700;
+        color: #273441;
 
-        button {
-          border-width: medium;
-          padding: 18px 28px;
-          float: left;
-          font-size: 1.2rem;
-          font-weight: bold;
-          border-radius: 0;
-          border-color: #273441;
+        &:not(:last-child) {
+          margin-bottom: 1.7rem;
+          font-weight: 200;
         }
       }
     }
 
-    .image-container {
-      text-align: center;
+    .calculate-button {
+      margin-top: 3.2rem;
 
-      img {
-        margin-top: 20px;
+      button {
+        border-width: medium;
+        padding: 18px 28px;
+        float: left;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 0;
+        border-color: #273441;
       }
     }
+  }
+
+  .image-container {
+    text-align: center;
+
+    img {
+      margin-top: 20px;
+    }
+  }
+
   // }
 
   /* HomeScreen.scss */
 
   /* Previous styles for the HomeScreen component */
 }
+
 .center-block {
   max-height: 400px;
   max-width: 350px;
@@ -87,6 +90,7 @@ body {
 
 
 @media only screen and (max-width: 992px) {
+
   /* For mobile phones: */
   .img-home {
     position: absolute;
@@ -95,10 +99,29 @@ body {
     width: 100%;
   }
 
-   .center-block {
+  .center-block {
     height: 100vh;
     width: 100%;
     max-height: 100vh;
     max-width: 100%;
   }
+  .home-screen {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-screen::before {
+    content: "";
+      background-image: url('../assets/images/roof.jpg');
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      z-index: -1;
+      opacity: 0.4;
+}
 }

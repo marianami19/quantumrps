@@ -13,9 +13,9 @@ function HeroSection() {
   };
   return (
     <Fragment>
-      <div className="img-home d-block d-lg-none">
+      {/* <div className="img-home d-block d-lg-none">
         <img src={roof} alt="Roofing" className="center-block" />
-      </div>
+      </div> */}
       <div className=" home-screen p-5">
         <div className="d-flex justify-content-center flex-wrap">
           <div className="d-flex  flex-column">
