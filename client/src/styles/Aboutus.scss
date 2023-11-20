@@ -1,23 +1,24 @@
 .main-container {
   background: #273441;
-  padding: 50px; 
+  padding: 50px;
 }
 
 .main-light-container {
- background: #F8FBFF;
-  padding: 50px; 
+  background: #F8FBFF;
+  padding: 50px;
 }
 
 
 .title {
   font-family: "Century Gothic";
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0;
   text-align: left;
   margin-bottom: 2rem;
   color: #E3E8ED;
 }
+
 .blue-title {
   color: #00529C;
 
@@ -25,7 +26,7 @@
 
 .description {
   font-family: "Century Gothic";
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   /* line-height: 40px; */
   letter-spacing: 0;
@@ -40,4 +41,9 @@
 
 .dark-font {
   color: #273441;
+}
+
+.about-imgs {
+  height: 350px;
+  width: auto;
 }

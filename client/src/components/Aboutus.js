@@ -20,63 +20,63 @@ const AboutUs = () => {
         />
       </Helmet>
       <div className="container-fluid main-container">
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-5">
+        <div className="d-flex flex-wrap justify-content-around flex-margin px-md-5 py-3 mx-3">
+          <div className="p-1">
             <h2 className="title">Our Story</h2>
             <p className="description desc-1">
-              The genesis of Quantum Roofing stems from a simple yet profound
-              realization: getting your roof replaced should not be a daunting,
+              The genesis of Quantum Roofing stems from a <br className="d-none d-md-block"/>simple yet profound
+              realization: getting your <br className="d-none d-md-block"/> roof replaced should not be a daunting, <br className="d-none d-md-block"/> 
               complicated ordeal.
             </p>
             <p className="description">
-              You shouldn't have to navigate the maze of high-pressure sales
-              tactics or endure endless back-and-forth proposals. We believe in
-              simplifying the entire process to put you in control.
+              You shouldn't have to navigate the maze of <br className="d-none d-md-block"/>  high-pressure sales
+              tactics or endure endless  <br className="d-none d-md-block"/> back-and-forth proposals. We believe in <br className="d-none d-md-block"/> 
+              simplifying the entire process to put you in <br className="d-none d-md-block"/>  control.
             </p>
           </div>
-          <div className="col-md-4 mt-2">
-            <img src={ourstory} alt="Our Story" className="img-fluid" />
+          <div className="p-1">
+            <img src={ourstory} alt="Our Story" className="about-imgs" />
           </div>
         </div>
       </div>
       <div className="container-fluid main-light-container">
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-4 mt-2">
-            <img src={vision} alt="Our Story" className="img-fluid" />
+        <div className="d-flex flex-wrap justify-content-around flex-margin px-md-5 py-3 mx-3">
+          <div className="p-1">
+            <img src={vision} alt="Our Story" className="about-imgs" />
           </div>
-          <div className="col-md-5">
+          <div className="p-1">
             <h2 className="title blue-title">Our Vision</h2>
             <p className="description desc-1 dark-font">
-              Our vision is straightforward: we want to make your roof
-              replacement as simple and hassle-free as possible.
+              Our vision is straightforward: we want to make<br className="d-none d-md-block"/> your roof
+              replacement as simple and hassle-<br className="d-none d-md-block"/>free as possible.
             </p>
             <p className="description dark-font">
-              To achieve this, we've harnessed the latest roofing technology and
-              resources available in the industry. Quantum Roofing is designed
-              with you in mind, allowing you to visit our website, select your
-              preferences, and receive accurate pricing in a matter of moments.
+              To achieve this, we've harnessed the latest<br className="d-none d-md-block"/> roofing technology and
+              resources available in<br className="d-none d-md-block"/> the industry. Quantum Roofing is designed
+              with<br className="d-none d-md-block"/> you in mind, allowing you to visit our website,<br className="d-none d-md-block"/> select your
+              preferences, and receive accurate<br className="d-none d-md-block"/> pricing in a matter of moments.
             </p>
           </div>
         </div>
       </div>
       <div className="container-fluid main-light-container">
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-5">
+        <div className="d-flex flex-wrap justify-content-around flex-margin px-md-5 py-3 mx-3">
+          <div className="p-1">
             <h2 className="title blue-title">Our Mission</h2>
             <p className="description desc-1 dark-font">
-              At Quantum Roofing, we are on a mission to redefine the way you
-              experience roofing services.
+              At Quantum Roofing, we are on a mission to<br className="d-none d-md-block"/> redefine the way you
+              experience roofing<br className="d-none d-md-block"/> services.
             </p>
             <p className="description dark-font">
-              Founded by two former insurance executives who witnessed the
-              struggles homeowners faced in finding affordable roof replacement
-              solutions, we embarked on this journey to eliminate the stress and
-              complications associated with the process.
+              Founded by two former insurance executives<br className="d-none d-md-block"/> who witnessed the
+              struggles homeowners<br className="d-none d-md-block"/> faced in finding affordable roof replacement<br className="d-none d-md-block"/>
+              solutions, we embarked on this journey to <br className="d-none d-md-block"/>eliminate the stress and
+              complications<br className="d-none d-md-block"/> associated with the process.
             </p>
           </div>
 
-          <div className="col-md-4 mt-2">
-            <img src={mission} alt="Our Story" className="img-fluid" />
+          <div className="p-1">
+            <img src={mission} alt="Our Story" className="about-imgs" />
           </div>
         </div>
       </div>
