@@ -15,9 +15,9 @@ const HomeInfo = () => {
                   Options
                 </h3>
                 <p className="card-text">
-                  We understand the <br className="d-block d-lg-none"/> importance <br className="d-none d-lg-block"/> of cost-effective solutions <br className="d-block d-lg-none"/> for
-                  your<br className="d-none d-lg-block"/> roofing needs. Quantum <br className="d-block d-lg-none"/> Roofing<br className="d-none d-lg-block"/> is committed  <br className="d-block d-lg-none"/>to providing<br className="d-none d-lg-block"/>
-                  budget-friendly  <br className="d-block d-lg-none"/>choices without <br className="d-none d-lg-block"/>compromising quality.
+                  We understand the  importance <br className="d-block d-lg-none"/><br className="d-none d-lg-block"/> of cost-effective solutions <br className="d-block d-lg-none"/> for
+                  your<br className="d-none d-lg-block"/> roofing needs. Quantum <br className="d-block d-lg-none"/> Roofing<br className="d-none d-lg-block"/> is committed to providing <br className="d-block d-lg-none"/><br className="d-none d-lg-block"/> 
+                  budget-friendly choices <br className="d-block d-lg-none"/>without <br className="d-none d-lg-block"/>compromising quality.
                 </p>
               </div>
             </div>
@@ -30,9 +30,9 @@ const HomeInfo = () => {
                   Reliable
                 </h3>
                 <p className="card-text">
-                  Time is of the essence <br className="d-block d-lg-none"/> when it<br className="d-none d-lg-block"/> comes to roof  <br className="d-block d-lg-none"/>replacements.
-                  With<br className="d-none d-lg-block"/> Quantum Roofing,  <br className="d-block d-lg-none"/>you can<br className="d-none d-lg-block"/> expect swift  <br className="d-block d-lg-none"/>responses and<br className="d-none d-lg-block"/>
-                  dependable service <br className="d-block d-lg-none"/> at every<br className="d-none d-lg-block"/> stage of the process.
+                  Time is of the essence when it <br className="d-block d-lg-none"/><br className="d-none d-lg-block"/> comes to roof replacements.
+                  With<br className="d-block d-lg-none"/><br className="d-none d-lg-block"/> Quantum Roofing, you can<br className="d-none d-lg-block"/> <br className="d-block d-lg-none"/>expect swift responses and <br className="d-block d-lg-none"/><br className="d-none d-lg-block"/>
+                  dependable service at every<br className="d-block d-lg-none"/><br className="d-none d-lg-block"/> stage of the process.
                 </p>
               </div>
             </div>
@@ -45,10 +45,10 @@ const HomeInfo = () => {
                   Approach
                 </h3>
                 <p className="card-text">
-                  We have leveraged  <br className="d-block d-lg-none"/>cutting-edge<br className="d-none d-lg-block"/> technology to  <br className="d-block d-lg-none"/>reinvent the<br className="d-none d-lg-block"/>
-                  roofing  <br className="d-block d-lg-none"/>industry. Our goal is to  <br className="d-block d-lg-none"/>turn <br className="d-none d-lg-block"/>the traditional, <br className="d-block d-lg-none"/>
-                  cumbersome<br className="d-none d-lg-block"/>process on its head <br className="d-block d-lg-none"/> and replace<br className="d-none d-lg-block"/> it with a seamless <br className="d-block d-lg-none"/>
-                  and customer-<br className="d-none d-lg-block"/>centric experience.
+                  We have leveraged cutting-edge<br className="d-block d-lg-none"/><br className="d-none d-lg-block"/> technology to reinvent the <br className="d-none d-lg-block"/>
+                  roofing<br className="d-block d-lg-none"/> industry. Our goal is to turn<br className="d-block d-lg-none"/> <br className="d-none d-lg-block"/>the traditional, 
+                  cumbersome<br className="d-none d-lg-block"/><br className="d-block d-lg-none"/> process on its head and replace<br className="d-none d-lg-block"/> it <br className="d-block d-lg-none"/>with a seamless 
+                  and customer-<br className="d-none d-lg-block"/><br className="d-block d-lg-none"/>centric experience.
                 </p>
               </div>
             </div>
